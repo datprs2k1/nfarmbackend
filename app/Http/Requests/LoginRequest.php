@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\_Abstract\ApiBaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends ApiBaseRequest
 {

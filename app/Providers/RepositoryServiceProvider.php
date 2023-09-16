@@ -25,6 +25,5 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(IPasswordResetRepo::class, PasswordResetRepo::class);
         $this->app->singleton(IMailService::class, MailService::class);
         $this->app->singleton(IPrefixRepo::class, PrefixRepository::class);
-        $this->app->singleton(ICategoryRepository::class, CategoryRepository::class);
     }
 }

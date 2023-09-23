@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('configs', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->boolean("has_child")->default(false);
-            $table->unsignedBigInteger("parent_id")->default(0);
-            $table->string("description")->nullable();
+            $table->text('name');
+            $table->json('value');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('configs');
     }
 };

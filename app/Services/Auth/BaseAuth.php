@@ -10,6 +10,7 @@ use App\Services\_Abstract\BaseService;
 use App\Services\_Exception\AppServiceException;
 use App\Services\MailService\IMailService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Ramsey\Uuid\Uuid;
@@ -32,10 +33,10 @@ abstract class BaseAuth extends BaseService implements AuthContract
      */
     public function login(array $attempt)
     {
-        if (!$token = auth($this->guard)->attempt($attempt)) {
+        if (!$token = Auth::attempt($attempt, true)) {
             throw new AppServiceException(__("auth.failed"));
         }
-        $userData = auth($this->guard)->user();
+        $userData = auth()->user();
         return [
             'user' => $userData,
             'token' => $token,

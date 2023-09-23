@@ -26,5 +26,4 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::middleware('auth:admin')->group(function () {
-});
+

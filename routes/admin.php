@@ -16,17 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->group(function () {
-    Route::post('login', [AuthController::class, 'login']);
+Route::prefix('auth')->as("api.admin.")->group( function () {
+    Route::post('login', [AuthController::class, 'login'])->name("login");
     Route::post('register', [AuthController::class, 'register']);
     Route::middleware('auth:admin','role:admin')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
-    });
-});
-
-Route::middleware('auth:admin')->group(function () {
-    Route::middleware('role:admin')->group(function () {
     });
 });
 

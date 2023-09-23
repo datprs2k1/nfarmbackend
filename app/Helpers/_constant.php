@@ -13,3 +13,16 @@ const ROLE_ADMIN = "admin";
 const ROLE_CUSTOMER = "customer";
 
 const DEFAULT_PAGINATE = 10;
+
+const MENU = [
+    [
+        'name' => 'Dashboard',
+        'url' => 'admin.dashboard',
+        'icon' => 'dashboard',
+    ],
+    [
+        'name' => 'Categories',
+        'url' => 'admin.dashboard',
+        'icon' => 'apps'
+    ]
+];

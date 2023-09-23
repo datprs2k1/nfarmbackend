@@ -33,11 +33,10 @@ class AdminSeeder extends Seeder
                 "email" => "admin@admin.com",
                 "password" => bcrypt("123456"),
                 "phone"=> "0969688924",
-                "ref_code"=> "VN",
                 "role_id" => UserModel::ROLE_ADMIN
             ]);
             $role = Role::findByName(ROLE_ADMIN);
-            $user->assignRole($role);   
+            $user->assignRole($role);
         });
         DB::statement("SET FOREIGN_KEY_CHECKS = 1");
     }

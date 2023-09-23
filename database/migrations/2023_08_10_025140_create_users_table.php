@@ -18,24 +18,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->double('coin')->nullable();
             $table->string('phone');
             $table->bigInteger('role_id');
             $table->tinyInteger('status')->default(1);
             $table->string('password');
-            $table->string('singature')->nullable();
-            $table->string('avatar')->nullable();
-            $table->boolean('allow_new_via_email')->nullable();
-            $table->date('dob')->nullable();
-            $table->tinyInteger('gender')->nullable();
-            $table->string('website')->nullable();
-            $table->string('occupation')->nullable();
-            $table->boolean('show_dob')->nullable();
-            $table->boolean('enable_2step_verification')->nullable();
-            $table->double('exp')->nullable();
-            $table->string('ref_code');
-            $table->bigInteger('parent_id')->nullable();
             $table->timestamps();
+            $table->rememberToken();
             $table->softDeletes();
         });
     }

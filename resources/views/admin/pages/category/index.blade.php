@@ -64,7 +64,7 @@
 
     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-notice">
+        <div class="modal-dialog modal-notice modal-md">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="title"></h5>
@@ -73,12 +73,49 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="instruction">
-                        <h1>Hello</h1>
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">
+                            Tên
+                            <small>*</small>
+                        </label>
+                        <input class="form-control" name="name" type="text" id="name" required="true" aria-required="true">
+                        <span class="material-input"></span>
+                    </div>
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">
+                            Mô tả
+                            <small>*</small>
+                        </label>
+                        <textarea class="form-control" name="description" type="text" id="description" required="true" aria-required="true"></textarea>
+                        <span class="material-input"></span>
+                    </div>
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">
+                            Loại
+                            <small>*</small>
+                        </label>
+                        <select class="form-control" name="type" type="text" id="type" required="true" aria-required="true">
+                            @foreach ($types as $key => $value)
+                            <option value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                        </select>
+                        <span class="material-input"></span>
+                    </div>
+                    <div class="form-group label-floating is-empty">
+                        <label class="control-label">
+                            Trạng thái
+                            <small>*</small>
+                        </label>
+                        <select class="form-control" name="status" type="text" id="status" required="true" aria-required="true">
+                            @foreach ($status as $key => $value)
+                                    <option value="{{ $key }}">{{ $value }}</option>
+                                @endforeach
+                        </select>
+                        <span class="material-input"></span>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Thêm</button>
+                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal" id="submit">Thêm</button>
                 </div>
             </div>
         </div>

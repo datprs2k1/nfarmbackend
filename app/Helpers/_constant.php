@@ -22,7 +22,7 @@ const MENU = [
     ],
     [
         'name' => 'Categories',
-        'url' => 'admin.dashboard',
+        'url' => 'admin.category.index',
         'icon' => 'apps'
     ]
 ];

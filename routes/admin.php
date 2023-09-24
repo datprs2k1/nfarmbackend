@@ -16,12 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('auth')->as("api.admin.")->group( function () {
+Route::prefix('auth')->as("api.admin.")->group(function () {
     Route::post('login', [AuthController::class, 'login'])->name("login");
     Route::post('register', [AuthController::class, 'register']);
-    Route::middleware('auth:admin','role:admin')->group(function () {
-        Route::post('logout', [AuthController::class, 'logout']);
-        Route::post('refresh', [AuthController::class, 'refresh']);
-    });
 });
 
+Route::middleware('auth:admin')->as("api.admin.")->group( function () {
+    Route::middleware('role:admin')->group(function () {
+        Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+            Route::get('', [CategoryController::class, 'get'])->name('get');
+            Route::get('{id}', [CategoryController::class, 'show'])->name('show');
+            Route::post('', [CategoryController::class,'store'])->name('store');
+            Route::put('{id}', [CategoryController::class, 'update'])->name('update');
+            Route::delete('{id}', [CategoryController::class, 'destroy'])->name('destroy');
+        });
+    });
+});

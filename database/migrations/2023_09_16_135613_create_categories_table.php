@@ -18,8 +18,6 @@ return new class extends Migration
             $table->text('name');
             $table->text('description');
             $table->tinyInteger('type');
-            $table->boolean('has_child');
-            $table->foreignId('parent_id')->constrained('categories', 'id');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

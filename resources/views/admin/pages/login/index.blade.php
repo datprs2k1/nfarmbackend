@@ -125,6 +125,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!--   Core JS Files   -->
@@ -184,6 +185,12 @@
                 // after 1000 ms we add the class animated to the login/register card
                 $('.card').removeClass('card-hidden');
             }, 700);
+
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+            });
 
             $("#login").on("click", function(e) {
                 e.preventDefault();

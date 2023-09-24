@@ -10,16 +10,13 @@ trait ApiResponse
         return response()->json([
             'message' => $message,
             'errors' => $errors,
-            "success" => false
+            "success" => false,
+            "error_msg" => $message
         ], $code);
     }
 
     public function sendSuccessResponse($data, $message = 'success'): JsonResponse
     {
-        return response()->json([
-            'message' => $message,
-            'data' => $data,
-            "success" => true
-        ]);
+        return response()->json($data);
     }
 }

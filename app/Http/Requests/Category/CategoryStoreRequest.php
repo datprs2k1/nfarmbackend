@@ -27,6 +27,11 @@ class CategoryStoreRequest extends ApiBaseRequest
                 Rule::unique(CategoryModel::class)
             ],
             'description' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'detail' => [
                 'nullable',
                 'string',
                 'max:255'

@@ -52,6 +52,15 @@
     <link href="{{ asset('assets/css/material-dashboard.min.css?v=2.1.0') }}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('assets/demo/demo.css') }}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <style>
+    </style>
+    <style>
+        .modal {
+            overflow-y: scroll !important;
+        }
+    </style>
+
     <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
@@ -208,9 +217,10 @@
         </div>
         <!--   Core JS Files   -->
         <script src="{{ asset('assets/js/core/jquery.min.js') }}"></script>
-        @stack('js')
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> @stack('js')
         <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
         <script src="{{ asset('assets/js/core/bootstrap-material-design.min.js') }}"></script>
+        <script src="https://demos.creative-tim.com/test/material-dashboard-pro/assets/js/plugins/dropzone.min.js"></script>
         <script src="{{ asset('assets/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
         <!-- Plugin for the momentJs  -->
         <script src="{{ asset('assets/js/plugins/moment.min.js') }}"></script>

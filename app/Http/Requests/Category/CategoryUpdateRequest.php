@@ -24,10 +24,14 @@ class CategoryUpdateRequest extends ApiBaseRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::unique(CategoryModel::class)->ignore($this->id)
             ],
             'description' => [
-                'nullable',
+                'required',
+                'string',
+                'max:255'
+            ],
+            'detail' => [
+                'required',
                 'string',
                 'max:255'
             ],

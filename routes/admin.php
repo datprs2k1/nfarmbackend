@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\CategoryController;
+use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\Admin\PrefixController;
+use App\Http\Controllers\Api\Admin\PriceController;
+use App\Http\Controllers\Api\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +32,27 @@ Route::middleware('auth:admin')->as("api.admin.")->group( function () {
             Route::post('', [CategoryController::class,'store'])->name('store');
             Route::put('{id}', [CategoryController::class, 'update'])->name('update');
             Route::delete('{id}', [CategoryController::class, 'destroy'])->name('destroy');
+        });
+        Route::group(['prefix' => 'post', 'as' => 'post.'], function () {
+            Route::get('', [PostController::class, 'get'])->name('get');
+            Route::get('{id}', [PostController::class, 'show'])->name('show');
+            Route::post('', [PostController::class,'store'])->name('store');
+            Route::put('{id}', [PostController::class, 'update'])->name('update');
+            Route::delete('{id}', [PostController::class, 'destroy'])->name('destroy');
+        });
+        Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
+            Route::get('', [ProductController::class, 'get'])->name('get');
+            Route::get('{id}', [ProductController::class, 'show'])->name('show');
+            Route::post('', [ProductController::class,'store'])->name('store');
+            Route::put('{id}', [ProductController::class, 'update'])->name('update');
+            Route::delete('{id}', [ProductController::class, 'destroy'])->name('destroy');
+        });
+        Route::group(['prefix' => 'price', 'as' => 'price.'], function () {
+            Route::get('', [PriceController::class, 'get'])->name('get');
+            Route::get('{id}', [PriceController::class, 'show'])->name('show');
+            Route::post('', [PriceController::class,'store'])->name('store');
+            Route::put('{id}', [PriceController::class, 'update'])->name('update');
+            Route::delete('{id}', [PriceController::class, 'destroy'])->name('destroy');
         });
     });
 });

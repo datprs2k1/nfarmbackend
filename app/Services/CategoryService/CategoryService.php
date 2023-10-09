@@ -10,40 +10,51 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CategoryService extends BaseService
 {
-    protected $mainRepository;
+    public $mainRepository;
 
-    function __construct(ICategoryRepository $entryRepository)
+    public function __construct(ICategoryRepository $entryRepository)
     {
         $this->mainRepository = $entryRepository;
     }
 
-    function get()
+    public function get()
     {
-        $entries = $this->mainRepository->get();
+        $entries = $this->mainRepository->orderBy('created_at', 'asc')->get();
 
         $entries = DataTables::of($entries)->addIndexColumn()->addColumn('actions', function ($item) {
-            return '<a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i><div class="ripple-container"></div></a>
-            <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>';
+            return '<button type="button" rel="tooltip" class="btn btn-info btn-round btn-sm"
+            data-original-title="" title="" id="detail" data-id="'.$item->id.'">
+            <i class="material-icons text-sm">person</i>
+            <div class="ripple-container"></div>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-success btn-round  btn-sm"
+            data-original-title="" title="" id="edit" data-id="'.$item->id.'">
+            <i class="material-icons text-sm">edit</i>
+        </button>
+        <button type="button" rel="tooltip" class="btn btn-danger btn-round  btn-sm"
+            data-original-title="" title="" id="delete" data-id="'.$item->id.'">
+            <i class="material-icons text-sm">close</i>
+        </button>';
         })->rawColumns(['actions'])->make();
 
         return $this->sendSuccessResponse($entries->original);
     }
 
-    function show($id)
+    public function show($id)
     {
         return DbTransactions()->addCallbackJson(function () use ($id) {
 
             $entry = $this->mainRepository->findById($id);
 
-            if (!$entry) {
-                throw new AppServiceException("Danh mục không tồn tại");
+            if (! $entry) {
+                throw new AppServiceException('Danh mục không tồn tại');
             }
 
             return $this->sendSuccessResponse($entry);
         });
     }
 
-    function store(ApiBaseRequest $request)
+    public function store(ApiBaseRequest $request)
     {
         return DbTransactions()->addCallbackJson(function () use ($request) {
             $input = $request->fillData();
@@ -53,14 +64,14 @@ class CategoryService extends BaseService
         });
     }
 
-    function update($entryId, ApiBaseRequest $request)
+    public function update($entryId, ApiBaseRequest $request)
     {
         return DbTransactions()->addCallbackJson(function () use ($entryId, $request) {
 
             $entry = $this->mainRepository->findById($entryId);
 
-            if (!$entry) {
-                throw new AppServiceException("Danh mục không tồn tại");
+            if (! $entry) {
+                throw new AppServiceException('Danh mục không tồn tại');
             }
 
             $entry->update($request->fillData());
@@ -69,14 +80,14 @@ class CategoryService extends BaseService
         });
     }
 
-    function destroy($entryId)
+    public function destroy($entryId)
     {
         return DbTransactions()->addCallbackJson(function () use ($entryId) {
 
             $entry = $this->mainRepository->findById($entryId);
 
-            if (!$entry) {
-                throw new AppServiceException("Danh mục không tồn tại");
+            if (! $entry) {
+                throw new AppServiceException('Danh mục không tồn tại');
             }
 
             $entry->delete();

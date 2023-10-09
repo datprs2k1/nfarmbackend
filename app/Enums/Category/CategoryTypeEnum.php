@@ -13,13 +13,13 @@ final class CategoryTypeEnum extends Enum
 {
     public const POST = 1;
     public const PRODUCT = 2;
-    public const SERVICE = 3;
+    public const PRICE = 3;
 
     public static function getTypes() {
         return [
             self::POST => 'Bài viết',
             self::PRODUCT => 'Sản phẩm',
-            self::SERVICE => 'Dịch vụ',
+            self::PRICE => 'Bảng giá',
         ];
     }
 }

@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->text('image');
             $table->text('description');
             $table->text('content');
             $table->foreignId('category_id')->constrained();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

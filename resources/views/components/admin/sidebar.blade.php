@@ -44,7 +44,6 @@
             </div>
         </div>
         <ul class="nav">
-            {{Route::currentRouteName()}}
             @foreach (collect(MENU) as $item)
             <li class="nav-item {{Route::currentRouteName() == $item['url'] ? 'active' : ''}}">
                 <a class="nav-link" href="{{ route($item['url']) }}">

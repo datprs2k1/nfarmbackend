@@ -16,8 +16,8 @@ final class CategoryStatusEnum extends Enum
 
     public static function getStatus() {
         return [
-            self::DEACTIVE => 'Không hoạt động',
             self::ACTIVE => 'Hoạt động',
+            self::DEACTIVE => 'Không hoạt động',
         ];
     }
 }

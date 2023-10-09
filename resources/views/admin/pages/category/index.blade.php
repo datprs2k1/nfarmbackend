@@ -18,7 +18,7 @@
                         <div class="col-sm-12">
                             <div class="mt-3 mb-3 row">
                                 <div class="col">
-                                    <button class="btn btn-info btn-round" data-toggle="modal" data-target="#noticeModal">
+                                    <button class="btn btn-info btn-round" id="add">
                                         Thêm mới
                                         <div class="ripple-container"></div>
                                     </button>
@@ -64,7 +64,7 @@
 
     <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-notice modal-md">
+        <div class="modal-dialog modal-notice modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="title"></h5>
@@ -78,8 +78,8 @@
                             Tên
                             <small>*</small>
                         </label>
-                        <input class="form-control" name="name" type="text" id="name" required="true" aria-required="true">
-                        <span class="material-input"></span>
+                        <input class="form-control" name="name" type="text" id="name" required="true"
+                            aria-required="true">
                     </div>
                     <div class="form-group label-floating is-empty">
                         <label class="control-label">
@@ -87,17 +87,17 @@
                             <small>*</small>
                         </label>
                         <textarea class="form-control" name="description" type="text" id="description" required="true" aria-required="true"></textarea>
-                        <span class="material-input"></span>
                     </div>
                     <div class="form-group label-floating is-empty">
                         <label class="control-label">
                             Loại
                             <small>*</small>
                         </label>
-                        <select class="form-control" name="type" type="text" id="type" required="true" aria-required="true">
+                        <select class="form-control" name="type" type="text" id="type" required="true"
+                            aria-required="true">
                             @foreach ($types as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
-                        @endforeach
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
                         </select>
                         <span class="material-input"></span>
                     </div>
@@ -106,16 +106,23 @@
                             Trạng thái
                             <small>*</small>
                         </label>
-                        <select class="form-control" name="status" type="text" id="status" required="true" aria-required="true">
+                        <select class="form-control" name="status" type="text" id="status" required="true"
+                            aria-required="true">
                             @foreach ($status as $key => $value)
-                                    <option value="{{ $key }}">{{ $value }}</option>
-                                @endforeach
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
                         </select>
                         <span class="material-input"></span>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal" id="submit">Thêm</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info btn-round mr-3" data-dismiss="modal" id="submit">Lưu
+                        lại
+                        <div class="ripple-container"></div>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal" id="submit">Đóng
+                        <div class="ripple-container"></div>
+                    </button>
                 </div>
             </div>
         </div>
@@ -170,6 +177,172 @@
                 "autoWidth": false,
                 "responsive": true,
                 "pageLength": 10
+            });
+
+            var mode = 'add';
+            var id = '';
+
+            var modal = $('#noticeModal');
+            var title = $('#title');
+            var name = $('#name');
+            var description = $('#description');
+            var type = $('#type');
+            var status = $('#status');
+            var submit = $('#submit');
+
+            $(document).on('click', '#detail', function(e) {
+                title.text('Chi tiết danh mục');
+
+                id = $(this).data('id');
+
+                var route = '{{ route('api.admin.category.show', ['id' => ':id']) }}';
+                route = route.replace(':id', id);
+
+                $.ajax({
+                    url: route,
+                    method: "GET",
+                    success: function(data) {
+                        name.val(data.name);
+                        description.val(data.description);
+                        type.val(data.type);
+                        status.val(data.status);
+
+                        name.prop('disabled', true);
+                        description.prop('disabled', true);
+                        type.prop('disabled', true);
+                        status.prop('disabled', true);
+                        submit.hide();
+
+                        modal.modal('show', {
+                            focus: false
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error.responseJSON.message)
+                    }
+                });
+            });
+
+            $(document).on('click', '#add', function(e) {
+                name.prop('disabled', false);
+                description.prop('disabled', false);
+                type.prop('disabled', false);
+                status.prop('disabled', false);
+                submit.show();
+
+                title.text('Thêm danh mục');
+                mode = 'add';
+                modal.modal('show');
+            });
+
+            $(document).on('click', '#edit', function(e) {
+                name.prop('disabled', false);
+                description.prop('disabled', false);
+                type.prop('disabled', false);
+                status.prop('disabled', false);
+                submit.show();
+
+                title.text('Sửa danh mục');
+                mode = 'edit';
+
+                id = $(this).data('id');
+
+                var route = '{{ route('api.admin.category.show', ['id' => ':id']) }}';
+                route = route.replace(':id', id);
+
+                $.ajax({
+                    url: route,
+                    method: "GET",
+                    success: function(data) {
+                        name.val(data.name);
+                        description.val(data.description);
+                        type.val(data.type);
+                        status.val(data.status);
+
+                        modal.modal('show');
+                    },
+                    error: function(error) {
+                        console.log(error.responseJSON.message)
+                    }
+                });
+
+            });
+
+            $('#submit').on('click', function(e) {
+                e.preventDefault();
+
+                var route = '';
+
+                if (mode == 'add') {
+                    route = '{{ route('api.admin.category.store') }}';
+                } else {
+                    route = '{{ route('api.admin.category.update', ['id' => ':id']) }}';
+                    route = route.replace(':id', id);
+                }
+
+                const data = new FormData();
+                data.append('name', name.val());
+                data.append('description', description.val());
+                data.append('type', type.val());
+                data.append('status', status.val());
+
+                if (mode == 'edit') {
+                    data.append('_method', 'PUT');
+                }
+
+                $.ajax({
+                    url: route,
+                    method: 'POST',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('#datatables').DataTable().ajax.reload();
+                        modal.modal('hide');
+
+                        Swal.fire({
+                            title: "Thành công!",
+                            text: "Thành công!",
+                            type: "success",
+                            button: "OK!",
+                        })
+                    },
+                    error: function(error) {
+                        console.log(error.responseJSON.message)
+                    }
+                });
+            });
+
+            $(document).on('click', '#delete', function(e) {
+                id = $(this).data('id');
+                route = '{{ route('api.admin.category.destroy', ['id' => ':id']) }}';
+                route = route.replace(':id', id);
+
+                Swal.fire({
+                    title: "Bạn có chắc chắn muốn xóa?",
+                    text: "Sau khi xóa, sẽ lưu ở thùng rác!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Vâng, tôi muốn xóa!",
+                    cancelButtonText: "Không, hủy xóa!"
+                }).then((result) => {
+                    if (result) {
+                        $.ajax({
+                            url: route,
+                            method: 'DELETE',
+                            contentType: false,
+                            processData: false,
+                            success: function(data) {
+                                $('#datatables').DataTable().ajax.reload();
+                            },
+                            error: function(error) {
+                                console.log(error)
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

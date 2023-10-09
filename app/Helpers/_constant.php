@@ -16,13 +16,27 @@ const DEFAULT_PAGINATE = 10;
 
 const MENU = [
     [
-        'name' => 'Dashboard',
+        'name' => 'Trang chủ',
         'url' => 'admin.dashboard',
         'icon' => 'dashboard',
     ],
     [
-        'name' => 'Categories',
+        'name' => 'Danh mục',
         'url' => 'admin.category.index',
         'icon' => 'apps'
+    ],
+    [
+        'name' => 'Bài viết',
+        'url' => 'admin.post.index',
+        'icon' => 'apps',
     ]
 ];
+
+const SOURCE_IMAGE_POST = "public/posts";
+const PATH_IMAGE_POST = "posts";
+
+const SOURCE_IMAGE_PRODUCT = "public/products";
+const PATH_IMAGE_PRODUCT = "products";
+
+const SOURCE_IMAGE_PRICE = "public/prices";
+const PATH_IMAGE_PRICE = "prices";

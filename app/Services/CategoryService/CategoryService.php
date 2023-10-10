@@ -22,18 +22,18 @@ class CategoryService extends BaseService
         $entries = $this->mainRepository->orderBy('created_at', 'asc')->get();
 
         $entries = DataTables::of($entries)->addIndexColumn()->addColumn('actions', function ($item) {
-            return '<button type="button" rel="tooltip" class="btn btn-info btn-round btn-sm"
+            return '<button type="button" rel="tooltip" class="btn btn-outline-primary rounded-pill btn-sm"
             data-original-title="" title="" id="detail" data-id="'.$item->id.'">
-            <i class="material-icons text-sm">person</i>
+            <i class="uil-info-circle font-20"></i>
             <div class="ripple-container"></div>
         </button>
-        <button type="button" rel="tooltip" class="btn btn-success btn-round  btn-sm"
+        <button type="button" rel="tooltip" class="btn btn-outline-success rounded-pill btn-sm"
             data-original-title="" title="" id="edit" data-id="'.$item->id.'">
-            <i class="material-icons text-sm">edit</i>
+            <i class="uil-edit font-20"></i>
         </button>
-        <button type="button" rel="tooltip" class="btn btn-danger btn-round  btn-sm"
+        <button type="button" rel="tooltip" class="btn btn-outline-danger rounded-pill btn-sm"
             data-original-title="" title="" id="delete" data-id="'.$item->id.'">
-            <i class="material-icons text-sm">close</i>
+            <i class="uil-trash font-20"></i>
         </button>';
         })->rawColumns(['actions'])->make();
 

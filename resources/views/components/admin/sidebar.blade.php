@@ -1,57 +1,53 @@
-<div class="sidebar" data-color="rose" data-background-color="black" data-image="{{ asset('assets/img/sidebar-1.jpg') }}">
-    <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-            CT
-        </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            Creative Tim
-        </a>
+<div class="leftside-menu">
+
+    <!-- Brand Logo Light -->
+    <a href="index.html" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
+        </span>
+        <span class="logo-sm">
+            <img src="{{ asset('assets/images/logo-sm.png') }}" alt="small logo">
+        </span>
+    </a>
+
+    <!-- Brand Logo Dark -->
+    <a href="index.html" class="logo logo-dark">
+        <span class="logo-lg">
+            <img src="{{ asset('assets/images/logo-dark.png') }}" alt="dark logo">
+        </span>
+        <span class="logo-sm">
+            <img src="{{ asset('assets/images/logo-dark-sm.png') }}" alt="small logo">
+        </span>
+    </a>
+
+    <!-- Sidebar Hover Menu Toggle Button -->
+    <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
+        <i class="ri-checkbox-blank-circle-line align-middle"></i>
     </div>
-    <div class="sidebar-wrapper">
-        <div class="user">
-            <div class="photo">
-                <img src="{{ asset('assets/img/faces/avatar.jpg') }}" />
-            </div>
-            <div class="user-info">
-                <a data-toggle="collapse" href="#collapseExample" class="username">
-                    <span>
-                        Tania Andrew
-                        <b class="caret"></b>
-                    </span>
-                </a>
-                <div class="collapse" id="collapseExample">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> MP </span>
-                                <span class="sidebar-normal"> My Profile </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> EP </span>
-                                <span class="sidebar-normal"> Edit Profile </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="sidebar-mini"> S </span>
-                                <span class="sidebar-normal"> Settings </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <ul class="nav">
+
+    <!-- Full Sidebar Menu Close Button -->
+    <div class="button-close-fullsidebar">
+        <i class="ri-close-fill align-middle"></i>
+    </div>
+
+    <!-- Sidebar -left -->
+    <div class="h-100" id="leftside-menu-container" data-simplebar>
+        <!--- Sidemenu -->
+        <ul class="side-nav">
             @foreach (collect(MENU) as $item)
-            <li class="nav-item {{Route::currentRouteName() == $item['url'] ? 'active' : ''}}">
-                <a class="nav-link" href="{{ route($item['url']) }}">
-                    <i class="material-icons">{{$item['icon']}}</i>
-                    <p> {{$item['name']}} </p>
-                </a>
-            </li>
+                <li class="side-nav-item {{ Route::currentRouteName() == $item['url'] ? 'menuitem-active' : '' }}">
+                    <a href="apps-calendar.html" class="side-nav-link">
+                        <i class="{{ $item['icon'] }}"></i>
+                        <span> {{ $item['name'] }} </span>
+                    </a>
+                </li>
             @endforeach
+
+
+
         </ul>
+        <!--- End Sidemenu -->
+
+        <div class="clearfix"></div>
     </div>
 </div>

@@ -1,128 +1,79 @@
 @extends('admin.layouts.layout')
 
 @section('content')
-    <div class="card">
-        <div class="card-header card-header-primary card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">assignment</i>
-            </div>
-            <h4 class="card-title">Danh sách danh mục</h4>
-        </div>
-        <div class="card-body">
-            <div class="toolbar">
-
-            </div>
-            <div class="material-datatables">
-                <div id="datatables_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="mt-3 mb-3 row">
-                                <div class="col">
-                                    <button class="btn btn-info btn-round" id="add">
-                                        Thêm mới
-                                        <div class="ripple-container"></div>
-                                    </button>
-                                </div>
-                            </div>
-                            <table id="datatables"
-                                class="table table-striped table-no-bordered table-hover dataTable dtr-inline"
-                                cellspacing="0" width="100%" style="width: 100%;" role="grid"
-                                aria-describedby="datatables_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" aria-sort="ascending">
-                                            ID</th>
-                                        <th class="sorting_asc font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" aria-sort="ascending">
-                                            Tên danh mục</th>
-                                        <th class="sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1">
-                                            Mô tả</th>
-                                        <th class="sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1">
-                                            Loại</th>
-                                        <th class="sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1">
-                                            Trạng thái</th>
-                                        <th class="disabled-sorting sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1">
-                                            Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                </tfoot>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                        <li class="breadcrumb-item active">Data Tables</li>
+                    </ol>
                 </div>
+                <h4 class="page-title">Data Tables</h4>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#fullscreeexampleModal">
+                                <i class=" uil-plus font-16"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên danh mục</th>
+                                <th>Mô tả</th>
+                                <th>Loại</th>
+                                <th>Trạng thái</th>
+                                <th>Hành dộng</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div>
+
+    <div class="modal fade" id="fullscreeexampleModal" tabindex="-1" aria-labelledby="fullscreeexampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-notice modal-lg">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <i class="material-icons">close</i>
-                    </button>
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="primary-header-modalLabel">Modal Heading</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Tên
-                            <small>*</small>
-                        </label>
-                        <input class="form-control" name="name" type="text" id="name" required="true"
-                            aria-required="true">
+                    <div class="mb-3">
+                        <label for="name" class="form-label font-20">Tên danh mục</label>
+                        <input type="text" name="name" class="form-control font-16" id="name"
+                            placeholder="Tên danh mục" />
                     </div>
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Mô tả
-                            <small>*</small>
-                        </label>
-                        <textarea class="form-control" name="description" type="text" id="description" required="true" aria-required="true"></textarea>
+                    <div class="mb-3">
+                        <label for="description" class="form-label font-20">Mô tả</label>
+                        <input type="text" name="description" class="form-control font-16" id="name"
+                            placeholder="Mô tả" />
                     </div>
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Loại
-                            <small>*</small>
-                        </label>
-                        <select class="form-control" name="type" type="text" id="type" required="true"
-                            aria-required="true">
-                            @foreach ($types as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
-                        <span class="material-input"></span>
-                    </div>
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Trạng thái
-                            <small>*</small>
-                        </label>
-                        <select class="form-control" name="status" type="text" id="status" required="true"
-                            aria-required="true">
-                            @foreach ($status as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
-                        <span class="material-input"></span>
+                    <div class="mb-3">
+                        <label for="type" class="form-label font-20">Loại</label>
+                        <input type="text" name="type" class="form-control font-16" id="name"
+                            placeholder="Mô tả" />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info btn-round mr-3" data-dismiss="modal" id="submit">Lưu
-                        lại
-                        <div class="ripple-container"></div>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal" id="submit">Đóng
-                        <div class="ripple-container"></div>
-                    </button>
+                    <a href="javascript:void(0);" class="btn btn-light" data-bs-dismiss="modal">Close</a>
+                    <button type="button" class="btn btn-primary">Save Changes</button>
                 </div>
             </div>
         </div>
@@ -132,41 +83,56 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            $('#datatables').DataTable({
+
+            $('#basic-datatable').DataTable({
                 processing: true,
                 serverSide: true,
+                language: {
+                    paginate: {
+                        previous: "<i class='mdi mdi-chevron-left'>",
+                        next: "<i class='mdi mdi-chevron-right'>"
+                    }
+                },
+                drawCallback: function() {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                },
                 ajax: '{!! route('api.admin.category.get') !!}',
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
-                        className: 'text-center',
+                        className: 'text-center align-middle',
                     },
                     {
                         data: 'name',
                         name: 'name',
-                        className: 'text-center',
+                        className: 'text-center align-middle',
                     },
                     {
                         data: 'description',
                         name: 'description',
-                        className: 'text-center',
+                        className: 'text-center align-middle',
                     },
                     {
                         data: 'type_text',
                         name: 'type_text',
-                        className: 'text-center',
+                        className: 'text-center align-middle',
                     },
                     {
                         data: 'status_text',
                         name: 'status_text',
-                        className: 'text-center'
+                        className: 'text-center',
+                        render: function(data, type, row, meta) {
+                            return row.status === 1 ?
+                                '<h4><span class="badge bg-success">Hoạt động</span></h4>' :
+                                '<h4><span class="badge bg-danger">Không hoạt động</span></h4>'
+                        }
                     },
                     {
                         data: 'actions',
                         name: 'actions',
                         orderable: false,
                         searchable: false,
-                        className: 'td-actions text-center'
+                        className: 'text-center align-middle',
                     }
                 ],
                 "paging": true,

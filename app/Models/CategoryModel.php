@@ -16,7 +16,6 @@ class CategoryModel extends Model
     protected $fillable = [
         'name',
         'description',
-        'detail',
         'type',
         'status'
     ];
@@ -28,11 +27,13 @@ class CategoryModel extends Model
 
     protected $appends = ['status_text', 'type_text'];
 
-    public function getTypeTextAttribute() {
+    public function getTypeTextAttribute()
+    {
         return CategoryTypeEnum::getTypes()[$this->type];
     }
 
-    public function getStatusTextAttribute() {
+    public function getStatusTextAttribute()
+    {
         return CategoryStatusEnum::getStatus()[$this->status];
     }
 }

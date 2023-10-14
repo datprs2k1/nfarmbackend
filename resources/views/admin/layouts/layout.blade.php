@@ -27,6 +27,8 @@
         rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/vendor/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/vendor/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendor/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
@@ -939,27 +941,22 @@
     <!-- Vendor js -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
 
-    <!-- Apex  Charts js -->
-    <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min') }}.js"></script>
-
-    <!-- Todo js -->
-    <script src="{{ asset('assets/js/ui/component.todo') }}.js"></script>
-
-    <!-- CRM Dashboard Demo App Js -->
-    <script src="{{ asset('assets/js/pages/demo.crm') }}-dashboard.js"></script>
-
-    <!-- App js -->
-    <script src="{{ asset('assets/js/app.min.js') }}"></script>
-
-
     <!-- Datatables js -->
     <script src="{{ asset('assets/vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
 
+    <script src="{{ asset('assets/vendor/select2/js/select2.min.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- quill js -->
     <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+
+    <!-- App js -->
+    <script src="{{ asset('assets/js/app.min.js') }}"></script>
+
 
     @stack('js')
 

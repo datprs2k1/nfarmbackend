@@ -61,30 +61,6 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'FERTIKIT 4G',
-                'description' => 'Máy châm phân đinh dưỡng',
-                'type' => CategoryTypeEnum::getValue('PRICE'),
-                'status' => CategoryStatusEnum::getValue('ACTIVE'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'NMC',
-                'description' => 'Hệ thống quan trắc và điều khiển',
-                'type' => CategoryTypeEnum::getValue('PRICE'),
-                'status' => CategoryStatusEnum::getValue('ACTIVE'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'QR CHECK',
-                'description' => 'Các hệ thống sản phẩm khác',
-                'type' => CategoryTypeEnum::getValue('PRICE'),
-                'status' => CategoryStatusEnum::getValue('ACTIVE'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
                 'name' => 'Câu chuyện thành công',
                 'description' => 'Các hệ thống sản phẩm khác',
                 'type' => CategoryTypeEnum::getValue('POST'),
@@ -101,7 +77,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'HỆ THỐNG TƯỚI',
+                'name' => 'Hệ thống tưới',
                 'description' => 'Các hệ thống sản phẩm khác',
                 'type' => CategoryTypeEnum::getValue('POST'),
                 'status' => CategoryStatusEnum::getValue('ACTIVE'),
@@ -109,7 +85,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'KIẾN THỨC NÔNG NGHIỆP',
+                'name' => 'Kiến thức nông nghiệp',
                 'description' => 'Các hệ thống sản phẩm khác',
                 'type' => CategoryTypeEnum::getValue('POST'),
                 'status' => CategoryStatusEnum::getValue('ACTIVE'),
@@ -117,7 +93,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'LĨNH VỰC',
+                'name' => 'Lĩnh vực',
                 'description' => 'Các hệ thống sản phẩm khác',
                 'type' => CategoryTypeEnum::getValue('POST'),
                 'status' => CategoryStatusEnum::getValue('ACTIVE'),
@@ -125,7 +101,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'THIẾT BỊ',
+                'name' => 'Thiết bị',
                 'description' => 'Các hệ thống sản phẩm khác',
                 'type' => CategoryTypeEnum::getValue('POST'),
                 'status' => CategoryStatusEnum::getValue('ACTIVE'),
@@ -133,7 +109,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'TRUYỀN THÔNG',
+                'name' => 'Truyền thông',
                 'description' => 'Các hệ thống sản phẩm khác',
                 'type' => CategoryTypeEnum::getValue('POST'),
                 'status' => CategoryStatusEnum::getValue('ACTIVE'),

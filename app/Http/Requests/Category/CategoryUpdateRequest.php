@@ -30,11 +30,6 @@ class CategoryUpdateRequest extends ApiBaseRequest
                 'string',
                 'max:255'
             ],
-            'detail' => [
-                'required',
-                'string',
-                'max:255'
-            ],
             'type' => [
                 'required',
                 'string',

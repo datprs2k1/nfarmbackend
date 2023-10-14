@@ -22,13 +22,12 @@
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#fullscreeexampleModal">
+                            <button type="button" class="btn btn-primary" id="add">
                                 <i class=" uil-plus font-16"></i>
                             </button>
                         </div>
                     </div>
-                    <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                    <table id="table" class="table table-striped dt-responsive nowrap w-100">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -45,8 +44,7 @@
         </div><!-- end col-->
     </div>
 
-    <div class="modal fade" id="fullscreeexampleModal" tabindex="-1" aria-labelledby="fullscreeexampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header modal-colored-header bg-primary">
@@ -62,18 +60,29 @@
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label font-20">Mô tả</label>
-                        <input type="text" name="description" class="form-control font-16" id="name"
+                        <input type="text" name="description" class="form-control font-16" id="description"
                             placeholder="Mô tả" />
                     </div>
                     <div class="mb-3">
                         <label for="type" class="form-label font-20">Loại</label>
-                        <input type="text" name="type" class="form-control font-16" id="name"
-                            placeholder="Mô tả" />
+                        <select class="form-control select2" id="type">
+                            @foreach ($types as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label font-20">Trạng thái</label>
+                        <select class="form-control select2" id="status">
+                            @foreach ($status as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="javascript:void(0);" class="btn btn-light" data-bs-dismiss="modal">Close</a>
-                    <button type="button" class="btn btn-primary">Save Changes</button>
+                    <a href="javascript:void(0);" class="btn btn-light" data-bs-dismiss="modal">Đóng</a>
+                    <button type="button" class="btn btn-primary" id="submit">Lưu lại</button>
                 </div>
             </div>
         </div>
@@ -83,8 +92,11 @@
 @push('js')
     <script>
         $(document).ready(function() {
+            $(".select2").select2({
+                dropdownParent: $("#modal")
+            });
 
-            $('#basic-datatable').DataTable({
+            $('#table').DataTable({
                 processing: true,
                 serverSide: true,
                 language: {
@@ -94,7 +106,7 @@
                     }
                 },
                 drawCallback: function() {
-                    $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                    $('.table_paginate > .pagination').addClass('pagination-rounded');
                 },
                 ajax: '{!! route('api.admin.category.get') !!}',
                 columns: [{
@@ -148,7 +160,7 @@
             var mode = 'add';
             var id = '';
 
-            var modal = $('#noticeModal');
+            var modal = $('#modal');
             var title = $('#title');
             var name = $('#name');
             var description = $('#description');
@@ -263,15 +275,16 @@
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        $('#datatables').DataTable().ajax.reload();
                         modal.modal('hide');
 
                         Swal.fire({
                             title: "Thành công!",
                             text: "Thành công!",
-                            type: "success",
+                            icon: "success",
                             button: "OK!",
-                        })
+                        });
+
+                        $('#table').DataTable().ajax.reload();
                     },
                     error: function(error) {
                         console.log(error.responseJSON.message)
@@ -287,21 +300,28 @@
                 Swal.fire({
                     title: "Bạn có chắc chắn muốn xóa?",
                     text: "Sau khi xóa, sẽ lưu ở thùng rác!",
-                    type: "warning",
+                    icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Vâng, tôi muốn xóa!",
                     cancelButtonText: "Không, hủy xóa!"
                 }).then((result) => {
-                    if (result) {
+                    if (result.isConfirmed) {
                         $.ajax({
                             url: route,
                             method: 'DELETE',
                             contentType: false,
                             processData: false,
                             success: function(data) {
-                                $('#datatables').DataTable().ajax.reload();
+                                Swal.fire({
+                                    title: "Thành công!",
+                                    text: "Thành công!",
+                                    icon: "success",
+                                    button: "OK!",
+                                });
+
+                                $('#table').DataTable().ajax.reload();
                             },
                             error: function(error) {
                                 console.log(error)

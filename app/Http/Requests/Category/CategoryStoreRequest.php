@@ -31,11 +31,6 @@ class CategoryStoreRequest extends ApiBaseRequest
                 'string',
                 'max:255'
             ],
-            'detail' => [
-                'nullable',
-                'string',
-                'max:255'
-            ],
             'type' => [
                 'required',
                 'string',

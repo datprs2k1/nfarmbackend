@@ -10,7 +10,8 @@
                             class="text-primary">{{ $product->name }}</span></h1>
                     <ul class="list-unstyled mb-0">
                         @foreach ($product->detail as $detail)
-                            <li class="py-1"><i class="fas fa-check-circle me-2 text-primary"></i>{{ $detail }}</li>
+                            <li class="py-2 py-lg-1"><i class="fas fa-check-circle me-2 text-primary"></i>{{ $detail }}
+                            </li>
                         @endforeach
                     </ul>
                 </div>

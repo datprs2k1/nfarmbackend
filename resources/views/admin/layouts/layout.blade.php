@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-layout-mode="detached" data-topbar-color="light" data-menu-color="brand" data-sidenav-user="true"
-    data-sidenav-size="condensed" data-theme="light" data-layout-position="fixed">
+    data-sidenav-size="compact" data-theme="light" data-layout-position="fixed">
 
 <head>
     <meta charset="utf-8" />
@@ -953,6 +953,11 @@
 
     <!-- quill js -->
     <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+
+    <!-- plugin js -->
+    <script src="{{ asset('assets/vendor/dropzone/min/dropzone.min.js') }}"></script>
+    <!-- init js -->
+    <script src="{{ asset('assets/js/ui/component.fileupload.js') }}"></script>
 
     <!-- App js -->
     <script src="{{ asset('assets/js/app.min.js') }}"></script>

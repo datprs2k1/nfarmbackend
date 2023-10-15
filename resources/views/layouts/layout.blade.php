@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-
+<html lang="en" data-layout-mode="detached" data-topbar-color="dark" data-menu-color="brand" data-sidenav-user="true"
+    data-sidenav-size="condensed" data-theme="light" data-layout-position="fixed">
 
 <!-- Mirrored from quiety.themetags.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 07:21:35 GMT -->
 
@@ -75,7 +75,7 @@
             <!--footer top start-->
             <!--for light footer add .footer-light class and for dark footer add .bg-dark .text-white class-->
             <div class="footer-top  bg-gradient text-white ptb-120"
-                style="background: url('assets/img/page-header-bg.svg')no-repeat bottom right">
+                style="background: url('{{ asset('assets/img/page-header-bg.svg') }}')no-repeat bottom right">
                 <div class="container">
                     <div class="row justify-content-between">
                         <div class="col-md-8 col-lg-4 mb-md-4 mb-lg-0">

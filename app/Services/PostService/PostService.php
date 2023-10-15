@@ -22,24 +22,24 @@ class PostService extends BaseService
     function get()
     {
         $entries = $this->mainRepository->get()
-        ->load('category');
+            ->load('category');
 
-        $entries->map(function($entry){
+        $entries->map(function ($entry) {
             $entry->image = $this->getImage($entry->image, PATH_IMAGE_POST, SOURCE_IMAGE_POST);
         });
 
         $entries = DataTables::of($entries)->addIndexColumn()->addColumn('actions', function ($item) {
             return '<button type="button" rel="tooltip" class="btn btn-info btn-round btn-sm"
-            data-original-title="" title="" id="detail" data-id="'.$item->id.'">
+            data-original-title="" title="" id="detail" data-id="' . $item->id . '">
             <i class="material-icons text-sm">person</i>
             <div class="ripple-container"></div>
         </button>
         <button type="button" rel="tooltip" class="btn btn-success btn-round  btn-sm"
-            data-original-title="" title="" id="edit" data-id="'.$item->id.'">
+            data-original-title="" title="" id="edit" data-id="' . $item->id . '">
             <i class="material-icons text-sm">edit</i>
         </button>
         <button type="button" rel="tooltip" class="btn btn-danger btn-round  btn-sm"
-            data-original-title="" title="" id="delete" data-id="'.$item->id.'">
+            data-original-title="" title="" id="delete" data-id="' . $item->id . '">
             <i class="material-icons text-sm">close</i>
         </button>';
         })->rawColumns(['actions'])->make();

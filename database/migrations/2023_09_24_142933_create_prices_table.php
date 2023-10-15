@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('note');
             $table->text('detail');
             $table->double('warranty')->default(1);
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('product_id')->constrained();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('prices');
     }
 };

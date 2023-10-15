@@ -2,8 +2,8 @@
     <nav class="navbar navbar-expand-xl navbar-light">
         <div class="container d-flex align-items-center justify-content-lg-between position-relative">
             <a href="index.html" class="navbar-brand d-flex align-items-center mb-md-0 text-decoration-none">
-                <img src="assets/img/logo-white.png" alt="logo" class="img-fluid logo-white">
-                <img src="assets/img/logo-color.png" alt="logo" class="img-fluid logo-color">
+                <img src="{{ asset('assets/img/logo-white.png') }}" alt="logo" class="img-fluid logo-white">
+                <img src="{{ asset('assets/img/logo-color.png') }}" alt="logo" class="img-fluid logo-color">
             </a>
 
             <a class="navbar-toggler position-absolute right-0 border-0 " href="#offcanvasWithBackdrop" role="button">

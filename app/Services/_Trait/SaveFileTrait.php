@@ -13,6 +13,7 @@ trait SaveFileTrait
         if (!File::isDirectory(public_path('storage/' . $path))) {
             File::makeDirectory(public_path('storage/' . $path), 0777, true, true);
         }
+
         $fileName = Str::random(4) . '_' . preg_replace('/\s+/', '', $file->getClientOriginalName());
         Storage::putFileAs($source, $file, $fileName);
 
@@ -32,7 +33,7 @@ trait SaveFileTrait
             }
         }
 
-        return $fileName;
+        return collect($fileName);
     }
 
     function getImage($file, $path = PATH_IMAGE_POST, $source = SOURCE_IMAGE_POST)

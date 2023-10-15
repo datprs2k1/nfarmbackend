@@ -65,4 +65,4 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 });
 
 Route::get('', [HomeController::class, 'index']);
-Route::get('/product', [UserProductController::class, 'index']);
+Route::get('/product/{id}', [UserProductController::class, 'detail']);

@@ -15,6 +15,7 @@ class ProductUpdateRequest extends ApiBaseRequest
      *
      * @return array<string, mixed>
      */
+
     public function rules()
     {
         return [
@@ -22,7 +23,7 @@ class ProductUpdateRequest extends ApiBaseRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::unique(ProductModel::class)->ignore($this->id),
+                Rule::unique(ProductModel::class)->ignore($this->id, 'id'),
             ],
             'description' => [
                 'required',
@@ -36,7 +37,7 @@ class ProductUpdateRequest extends ApiBaseRequest
                 'required',
                 'string',
             ],
-            'image' => 'nullable|max:2048',
+            'image' => 'nullable|array',
             'status' => [
                 'required',
                 'string',

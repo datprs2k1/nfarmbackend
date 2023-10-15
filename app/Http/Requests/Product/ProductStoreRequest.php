@@ -36,7 +36,11 @@ class ProductStoreRequest extends ApiBaseRequest
                 'required',
                 'string',
             ],
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|array|min:1',
+            'image.*' => [
+                'required',
+                'mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ],
             'status' => [
                 'required',
                 'string',

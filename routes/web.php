@@ -55,14 +55,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/login', function () {
         return view('admin.views.login.login');
     })->name('login');
-    Route::middleware('auth.user', 'role:customer')->group(function () {
-        Route::group(['middleware' => 'role:admin'], function () {
-            Route::get('/', function () {
-                echo 'Hellol';
-            });
-        });
-    });
 });
 
-Route::get('', [HomeController::class, 'index']);
-Route::get('/product/{id}', [UserProductController::class, 'detail']);
+Route::get('', [HomeController::class, 'index'])->middleware('lscache:private;max-age=900');
+Route::get('/product/{id}', [UserProductController::class, 'detail'])->middleware('lscache:private;max-age=900');

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use Illuminate\Support\Facades\Route;
+use Litespeed\LSCache\LSCache;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
 Route::get('', [HomeController::class, 'index'])->middleware('lscache:private;max-age=900');
 Route::get('/product/{id}', [UserProductController::class, 'detail'])->middleware('lscache:private;max-age=900');
+
+
+Route::get('/clearCache', function () {
+    LSCache::purgeAll();
+});

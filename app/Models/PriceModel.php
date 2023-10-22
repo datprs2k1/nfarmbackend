@@ -13,11 +13,10 @@ class PriceModel extends Model
 
     protected $table = 'prices';
     protected $fillable = [
-        "category_id",
-        "deleted_at",
+        "product_id",
         "description",
         "detail",
-        "image",
+        "price",
         "name",
         "note",
         "status",
@@ -36,8 +35,8 @@ class PriceModel extends Model
         return PriceStatusEnum::getStatus()[$this->status];
     }
 
-    public function category()
+    public function product()
     {
-        return $this->belongsTo(CategoryModel::class);
+        return $this->hasOne(ProductModel::class, 'id', 'product_id');
     }
 }

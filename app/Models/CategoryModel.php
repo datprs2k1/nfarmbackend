@@ -36,4 +36,9 @@ class CategoryModel extends Model
     {
         return CategoryStatusEnum::getStatus()[$this->status];
     }
+
+    public function products()
+    {
+        return $this->hasMany(ProductModel::class, 'category_id', 'id');
+    }
 }

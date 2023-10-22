@@ -14,9 +14,9 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
-    public function detail($id)
+    public function detail($slug)
     {
-        $product = $this->productService->detail($id);
+        $product = $this->productService->detail($slug);
 
         return view('pages.product.detail', compact('product'));
     }

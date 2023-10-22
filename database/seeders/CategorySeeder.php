@@ -30,7 +30,7 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => 'Phần mềm',
-                'description' => 'Hệ sinh thái phần mềm hỗ trợ Nông nghiệp',
+                'description' => 'Hệ sinh thái phần mềm',
                 'type' => CategoryTypeEnum::getValue('PRODUCT'),
                 'status' => CategoryStatusEnum::getValue('ACTIVE'),
                 'created_at' => now(),
@@ -38,15 +38,7 @@ class CategorySeeder extends Seeder
             ],
             [
                 'name' => 'NextX AI',
-                'description' => 'Nền tảng trí tuệ nhân tạo nextX AI',
-                'type' => CategoryTypeEnum::getValue('PRODUCT'),
-                'status' => CategoryStatusEnum::getValue('ACTIVE'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Giải pháp IOT',
-                'description' => 'Các giải pháp Internet vạn vật',
+                'description' => 'Nền tảng trí tuệ nhân tạo',
                 'type' => CategoryTypeEnum::getValue('PRODUCT'),
                 'status' => CategoryStatusEnum::getValue('ACTIVE'),
                 'created_at' => now(),

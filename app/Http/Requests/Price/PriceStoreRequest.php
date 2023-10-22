@@ -6,6 +6,7 @@ use App\Enums\Price\PriceStatusEnum;
 use App\Http\Requests\_Abstract\ApiBaseRequest;
 use App\Models\CategoryModel;
 use App\Models\PriceModel;
+use App\Models\ProductModel;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -23,7 +24,10 @@ class PriceStoreRequest extends ApiBaseRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::unique(PriceModel::class)
+            ],
+            'price' => [
+                'required',
+                'string',
             ],
             'description' => [
                 'required',
@@ -34,23 +38,21 @@ class PriceStoreRequest extends ApiBaseRequest
                 'string',
             ],
             'note' => [
-                'required',
+                'nullable',
                 'string',
             ],
             'warranty' => [
                 'required',
                 'string',
             ],
-            'image' =>
-            'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'status' => [
                 'required',
                 'string',
                 Rule::in(PriceStatusEnum::getValues())
             ],
-            'category_id' => [
+            'product_id' => [
                 'required',
-                Rule::exists(CategoryModel::class, 'id')
+                Rule::exists(ProductModel::class, 'id')
             ]
         ];
     }
@@ -60,8 +62,6 @@ class PriceStoreRequest extends ApiBaseRequest
         return [
             'name' => 'Tên bài viết',
             'description' => 'Mô tả',
-            'description' => 'Nội dung',
-            'description' => 'Ảnh',
             'type' => 'Loại',
             'status' => 'Trạng thái'
         ];

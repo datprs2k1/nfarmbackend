@@ -3,6 +3,7 @@
 namespace App\Services\ProductService;
 
 use App\Http\Requests\_Abstract\ApiBaseRequest;
+use App\Models\ProductModel;
 use App\Repositories\Product\IProductRepository;
 use App\Services\_Abstract\BaseService;
 use App\Services\_Exception\AppServiceException;
@@ -58,7 +59,6 @@ class ProductService extends BaseService
                 throw new AppServiceException("Sản phẩm không tồn tại");
             }
 
-            $entry->image = $this->getImages($entry->image, PATH_IMAGE_PRODUCT, SOURCE_IMAGE_PRODUCT);
 
             return $this->sendSuccessResponse($entry);
         });
@@ -123,8 +123,8 @@ class ProductService extends BaseService
     {
         $detail = Str::replace('<ul>', '', $detail);
         $detail = Str::replace('</ul>', '', $detail);
-        $detail = Str::replace('<li><span style="color: rgb(0, 0, 0); background-color: transparent;">', '', $detail);
-        $detail = Str::replace('</span></li>', '||', $detail);
+        $detail = Str::replace('<li>', '', $detail);
+        $detail = Str::replace('</li>', '||', $detail);
 
         $details = Str::of($detail)->explode("||");
 
@@ -157,9 +157,9 @@ class ProductService extends BaseService
         return $futures;
     }
 
-    function detail($id)
+    function detail($slug)
     {
-        $entry = $this->mainRepository->findById($id);
+        $entry = $this->mainRepository->getModel()->findBySlug($slug);
 
         if (!$entry) {
             throw new AppServiceException("Sản phẩm không tồn tại");
@@ -171,5 +171,38 @@ class ProductService extends BaseService
         $entry->future = $this->getFuture($entry->future);
 
         return $entry;
+    }
+
+    function prices($slug)
+    {
+        $entry = ProductModel::findBySlug($slug)->load('prices');
+
+        if ($entry->prices->count() < 1) {
+            abort(404);
+        }
+
+        $prices = $entry->prices;
+
+        $prices->each(function ($price) {
+            $price->detail = $this->getPriceDetail($price->detail);
+        });
+
+        $prices = $prices->chunk(3);
+
+        return $prices;
+    }
+
+    function getPriceDetail($detail)
+    {
+        $detail = Str::replace('<ul>', '', $detail);
+        $detail = Str::replace('</ul>', '', $detail);
+        $detail = Str::replace('<li>', '', $detail);
+        $detail = Str::replace('</li>', '||', $detail);
+
+        $details = Str::of($detail)->explode("||");
+
+        $details = collect($details->filter()->all());
+
+        return $details;
     }
 }

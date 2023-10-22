@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('detail');
             $table->text('future');
             $table->foreignId('category_id')->constrained();
+            $table->string('slug');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
             $table->softDeletes();

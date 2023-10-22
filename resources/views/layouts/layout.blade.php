@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-layout-mode="detached" data-topbar-color="dark" data-menu-color="brand" data-sidenav-user="true"
+<html lang="en" data-layout-mode="detached" data-topbar-color="light" data-menu-color="brand" data-sidenav-user="true"
     data-sidenav-size="condensed" data-theme="light" data-layout-position="fixed">
 
 <!-- Mirrored from quiety.themetags.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 07:21:35 GMT -->

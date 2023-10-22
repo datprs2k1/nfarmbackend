@@ -28,7 +28,7 @@
                 <div class="row align-items-lg-center justify-content-between">
                     <div class="col-lg-5 order-lg-{{ $loop->odd ? '2' : '1' }} mb-7 mb-lg-0">
                         <div class="mb-4">
-                            <h2>TÍNH NĂNG NEXTFARM FERTIKIT 4G</h2>
+                            <h2 class="text-uppercase">TÍNH NĂNG {{ $product->name }}</h2>
                         </div>
                         <ul class="list-unstyled">
                             @foreach ($future as $item)

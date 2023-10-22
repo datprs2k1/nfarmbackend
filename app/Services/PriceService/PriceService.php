@@ -8,6 +8,8 @@ use App\Services\_Abstract\BaseService;
 use App\Services\_Exception\AppServiceException;
 use App\Services\_Trait\SaveFileTrait;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
+
 
 class PriceService extends BaseService
 {
@@ -22,26 +24,22 @@ class PriceService extends BaseService
     function get()
     {
         $entries = $this->mainRepository->get()
-        ->load('category');
-
-        $entries->map(function($entry){
-            $entry->image = $this->getImage($entry->image, PATH_IMAGE_PRICE, SOURCE_IMAGE_PRICE);
-        });
+            ->load('product');
 
         $entries = DataTables::of($entries)->addIndexColumn()->addColumn('actions', function ($item) {
-            return '<button type="button" rel="tooltip" class="btn btn-info btn-round btn-sm"
-            data-original-title="" title="" id="detail" data-id="'.$item->id.'">
-            <i class="material-icons text-sm">person</i>
-            <div class="ripple-container"></div>
-        </button>
-        <button type="button" rel="tooltip" class="btn btn-success btn-round  btn-sm"
-            data-original-title="" title="" id="edit" data-id="'.$item->id.'">
-            <i class="material-icons text-sm">edit</i>
-        </button>
-        <button type="button" rel="tooltip" class="btn btn-danger btn-round  btn-sm"
-            data-original-title="" title="" id="delete" data-id="'.$item->id.'">
-            <i class="material-icons text-sm">close</i>
-        </button>';
+            return '<button type="button" rel="tooltip" class="btn btn-outline-primary rounded-pill btn-sm"
+                data-original-title="" title="" id="show" data-id="' . $item->id . '">
+                <i class="uil-info-circle font-20"></i>
+                <div class="ripple-container"></div>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-outline-success rounded-pill btn-sm"
+                data-original-title="" title="" id="edit" data-id="' . $item->id . '">
+                <i class="uil-edit font-20"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-outline-danger rounded-pill btn-sm"
+                data-original-title="" title="" id="delete" data-id="' . $item->id . '">
+                <i class="uil-trash font-20"></i>
+            </button>';
         })->rawColumns(['actions'])->make();
 
         return $this->sendSuccessResponse($entries->original);
@@ -57,7 +55,7 @@ class PriceService extends BaseService
                 throw new AppServiceException("Sản phẩm không tồn tại");
             }
 
-            $entry->image = $this->getImage($entry->image, PATH_IMAGE_PRICE, SOURCE_IMAGE_PRICE);
+            $entry->image = $this->getImages($entry->image, PATH_IMAGE_PRODUCT, SOURCE_IMAGE_PRODUCT);
 
             return $this->sendSuccessResponse($entry);
         });
@@ -67,9 +65,6 @@ class PriceService extends BaseService
     {
         return DbTransactions()->addCallbackJson(function () use ($request) {
             $input = $request->fillData();
-
-            $url = $this->saveImage($input['image'], PATH_IMAGE_PRICE, SOURCE_IMAGE_PRICE);
-            $input['image'] = $url;
 
             $entry = $this->mainRepository->create($input);
 
@@ -88,13 +83,6 @@ class PriceService extends BaseService
             }
 
             $input = $request->fillData();
-
-            if ($request->hasFile('image')) {
-                $url = $this->saveImage($input['image'], PATH_IMAGE_PRICE, SOURCE_IMAGE_PRICE);
-                $input['image'] = $url;
-            } else {
-                $input['image'] = $entry->image;
-            }
 
             $entry->update($input);
 

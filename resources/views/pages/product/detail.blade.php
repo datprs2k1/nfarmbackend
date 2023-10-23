@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')
+    {{ $product->name }} - NFarm.Click
+@endsection
+
 @section('content')
     <section class="page-header position-relative overflow-hidden ptb-80 bg-dark"
         style="background: url('{{ asset('assets/img/page-header-bg.svg') }}'')no-repeat bottom left">

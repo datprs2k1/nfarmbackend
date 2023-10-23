@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')
+Trang chủ - NFarm.Click
+@endsection
+
 @section('content')
     <!--hero section start-->
     <section class="hero-section ptb-120 text-white bg-gradient"

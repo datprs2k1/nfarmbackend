@@ -9,6 +9,8 @@ use App\Http\Controllers\User\PriceController as UserPriceController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use Illuminate\Support\Facades\Route;
 use Litespeed\LSCache\LSCache;
+use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Tags\Url;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +63,21 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 
 Route::get('', [HomeController::class, 'index'])->middleware('lscache:private;max-age=900');
 Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('product.detail')->middleware('lscache:private;max-age=900');
-Route::get('/price/{slug}', [UserPriceController::class, 'show']);
+Route::get('/price/{slug}', [UserPriceController::class, 'show'])->middleware('lscache:private;max-age=900');
 
 
 Route::get('/clearCache', function () {
     LSCache::purgeAll();
+});
+
+Route::get('/createSitemap', function () {
+    SitemapGenerator::create(config('app.url'))
+        ->hasCrawled(function (Url $url) {
+            if ($url->segment(1) === 'admin' || $url->segment(1) === 'clearCache' || $url->segment(1) === 'createSitemap') {
+                return;
+            }
+
+            return $url;
+        })
+        ->writeToFile(public_path('sitemap.xml'));
 });

@@ -42,7 +42,8 @@
                                 </li>
                             @endforeach
                         </ul>
-                        <div class="d-flex justify-content-center mt-5"><a href=""
+                        <div class="d-flex justify-content-center mt-5"><a
+                                href="{{ route('price.detail', ['slug' => $product->slug]) }}"
                                 class="btn btn-primary btn-lg text-uppercase fw-bolder">Xem
                                 bảng
                                 giá</a>

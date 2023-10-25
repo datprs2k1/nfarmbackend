@@ -64,13 +64,108 @@
                 </ul>
             </div>
 
-            <div class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block">
+            <div class="action-btns me-5 me-lg-0 d-none d-md-block d-lg-block">
                 @guest
                     <a href="login.html" class="btn btn-link text-decoration-none me-2">Đăng nhập</a>
                     <a href="request-demo.html" class="btn btn-primary">Đăng ký</a>
                 @endguest
                 @auth
-                    <a href="request-demo.html" class="btn btn-primary">Đăng ký</a>
+                    <div class="d-flex flex-row gap-3 align-items-center">
+                        <div class="dropdown me-2">
+                            <a class="" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div class="d-flex flex-row gap-1 align-items-center">
+                                    <i class="fa-solid fa-cart-shopping text-primary fs-4"></i>
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        99+</span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white">
+                                <div class="rounded-custom width-full">
+                                    <div class="p-4">
+                                        <div class="dropdown-item d-flex align-items-start" href="#">
+                                            <div class="text pl-3">
+                                                <p class="fs-6 fw-bold">NEXTFARM FERTIKIT 4G - Cơ bản</p>
+                                                <p class="mb-0"><span class="text-primary">29.500.000 VNĐ
+                                                    </span><span class="quantity ms-3">Số lượng:
+                                                        01</span></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="dropdown-item d-flex align-items-start" href="#">
+                                            <div class="text pl-3">
+                                                <p class="fs-6 fw-bold">NEXTFARM FERTIKIT 4G - Cơ bản</p>
+                                                <p class="mb-0"><span class="text-primary">29.500.000 VNĐ
+                                                    </span><span class="quantity ms-3">Số lượng:
+                                                        01</span></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="dropdown-item d-flex align-items-start" href="#">
+                                            <div class="text pl-3">
+                                                <p class="fs-6 fw-bold">NEXTFARM FERTIKIT 4G - Cơ bản</p>
+                                                <p class="mb-0"><span class="text-primary">29.500.000 VNĐ
+                                                    </span><span class="quantity ms-3">Số lượng:
+                                                        01</span></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="dropdown-item text-center btn-link mt-3" href="#">
+                                            <button type="button" class="btn btn-danger">Xem giỏ hàng</button>
+                                            <span class="ion-ios-arrow-round-forward"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <a class="nav-link arrow-none nav-user px-2" data-bs-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="false" aria-expanded="false">
+                                <div class="d-flex flex-row gap-1 align-items-center">
+                                    <span class="account-user-avatar">
+                                        <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image"
+                                            width="32" class="rounded-circle">
+                                    </span>
+                                    <span class="d-lg-flex flex-column gap-1 d-none">
+                                        <h6 class="my-0">{{ auth()->user()->name }}</h6>
+                                    </span>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated">
+                                <!-- item-->
+                                <div class=" dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome !</h6>
+                                </div>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">
+                                    <i class="mdi mdi-account-circle me-1"></i>
+                                    <span>My Account</span>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">
+                                    <i class="mdi mdi-account-edit me-1"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">
+                                    <i class="mdi mdi-lifebuoy me-1"></i>
+                                    <span>Support</span>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">
+                                    <i class="mdi mdi-lock-outline me-1"></i>
+                                    <span>Lock Screen</span>
+                                </a>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item">
+                                    <i class="mdi mdi-logout me-1"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
                 @endauth
             </div>
         </div>

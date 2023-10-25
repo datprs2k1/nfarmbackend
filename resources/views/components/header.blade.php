@@ -65,8 +65,13 @@
             </div>
 
             <div class="action-btns text-end me-5 me-lg-0 d-none d-md-block d-lg-block">
-                <a href="login.html" class="btn btn-link text-decoration-none me-2">Đăng nhập</a>
-                <a href="request-demo.html" class="btn btn-primary">Đăng ký</a>
+                @guest
+                    <a href="login.html" class="btn btn-link text-decoration-none me-2">Đăng nhập</a>
+                    <a href="request-demo.html" class="btn btn-primary">Đăng ký</a>
+                @endguest
+                @auth
+                    <a href="request-demo.html" class="btn btn-primary">Đăng ký</a>
+                @endauth
             </div>
         </div>
     </nav>

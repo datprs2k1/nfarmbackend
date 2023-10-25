@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-Trang chủ - NFarm.Click
+    Trang chủ - NFarm.Click
 @endsection
 
 @section('content')

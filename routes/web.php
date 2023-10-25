@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\PriceController as UserPriceController;
 use App\Http\Controllers\User\ProductController as UserProductController;
@@ -62,7 +63,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 });
 
 
-Route::get('', [HomeController::class, 'index'])->middleware('lscache:public;max-age=900;esi=on');
+Route::get('', [HomeController::class, 'index'])->name('home')->middleware('lscache:public;max-age=900;esi=on');
+Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('lscache:private;max-age=900;esi=on');
 Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('product.detail')->middleware('lscache:public;max-age=900;esi=on');
 Route::get('/price/{slug}', [UserPriceController::class, 'show'])->name('price.detail')->middleware('lscache:public;max-age=900;esi=on');
 

@@ -63,10 +63,10 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
 });
 
 
-Route::get('', [HomeController::class, 'index'])->name('home')->middleware('lscache:public;max-age=900;esi=on');
-Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('lscache:private;max-age=900;esi=on');
-Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('product.detail')->middleware('lscache:public;max-age=900;esi=on');
-Route::get('/price/{slug}', [UserPriceController::class, 'show'])->name('price.detail')->middleware('lscache:public;max-age=900;esi=on');
+Route::get('', [HomeController::class, 'index'])->name('home');
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('product.detail');
+Route::get('/price/{slug}', [UserPriceController::class, 'show'])->name('price.detail');
 
 
 Route::get('/clearCache', function () {

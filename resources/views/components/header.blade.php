@@ -81,7 +81,7 @@
                                         99+</span>
                                 </div>
                             </a>
-                            <div class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white">
+                            <div class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white dropdown-menu-start">
                                 <div class="rounded-custom width-full">
                                     <div class="p-4">
                                         <div class="dropdown-item d-flex align-items-start" href="#">

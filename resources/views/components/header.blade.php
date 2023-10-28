@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="pricing.html" class="nav-link">Bảng giá</a></li>
+                    <li><a href="pricing.html" class="nav-link fs-6 text-dark">Bảng giá</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fs-6 text-dark" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>

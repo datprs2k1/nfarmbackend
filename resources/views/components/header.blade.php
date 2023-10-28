@@ -1,7 +1,7 @@
-<header class="main-header w-100">
-    <nav class="navbar navbar-expand-xl navbar-light">
+<header class="main-header w-100 z-10">
+    <nav class="navbar navbar-expand-xl navbar-light sticky-header">
         <div class="container d-flex align-items-center justify-content-lg-between position-relative">
-            <a href="index.html" class="navbar-brand d-flex align-items-center mb-md-0 text-decoration-none">
+            <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center mb-md-0 text-decoration-none">
                 <img src="{{ asset('assets/img/logo-white.png') }}" alt="logo" class="img-fluid logo-white">
                 <img src="{{ asset('assets/img/logo-color.png') }}" alt="logo" class="img-fluid logo-color">
             </a>
@@ -11,11 +11,13 @@
                     aria-controls="offcanvasWithBackdrop"></span>
             </a>
 
+            <div class="clearfix"></div>
+
             <div class="collapse navbar-collapse justify-content-center">
                 <ul class="nav col-12 col-md-auto justify-content-center main-menu">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Sản phẩm</a>
+                        <a class="nav-link dropdown-toggle fs-6 text-dark" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Sản phẩm</a>
                         <div class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white">
                             <div class="dropdown-grid rounded-custom width-full homepage-dropdown">
                                 @foreach ($products as $product)
@@ -42,8 +44,8 @@
                     </li>
                     <li><a href="pricing.html" class="nav-link">Bảng giá</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Tin tức</a>
+                        <a class="nav-link dropdown-toggle fs-6 text-dark" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
                         <div class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white">
                             <div class="dropdown-grid rounded-custom width-full">
                                 @foreach ($posts as $post)
@@ -59,7 +61,8 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="pricing.html" class="nav-link">Khách hàng</a></li>
+                    <li><a href="pricing.html" class="nav-link fs-6 text-dark">Khách hàng</a></li>
+                    <li><a href="pricing.html" class="nav-link fs-6 text-dark">Về NFarm</a></li>
 
                 </ul>
             </div>

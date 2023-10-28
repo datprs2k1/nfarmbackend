@@ -42,11 +42,15 @@
                                 </li>
                             @endforeach
                         </ul>
-                        <div class="d-flex justify-content-center mt-5"><a
-                                href="{{ route('price.detail', ['slug' => $product->slug]) }}"
-                                class="btn btn-primary btn-lg text-uppercase fw-bolder">Xem
-                                bảng
-                                giá</a>
+                        <div class="d-flex justify-content-center mt-5">
+                            @if ($product->prices->count() > 0)
+                                <a href="{{ route('price.detail', ['slug' => $product->slug]) }}"
+                                    class="btn btn-primary btn-lg text-uppercase fw-bolder">Xem
+                                    bảng
+                                    giá</a>
+                            @else
+                                <a href="" class="btn btn-primary btn-lg text-uppercase fw-bolder">Liên hệ</a>
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-6 order-lg-{{ $loop->odd ? '1' : '2' }}">

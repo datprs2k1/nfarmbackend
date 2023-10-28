@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-layout-mode="detached" data-topbar-color="light" data-menu-color="brand" data-sidenav-user="true"
-    data-sidenav-size="condensed" data-theme="light" data-layout-position="fixed">
+<html lang="vi">
 
 <!-- Mirrored from quiety.themetags.com/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Oct 2023 07:21:35 GMT -->
 
@@ -62,8 +61,7 @@
 
 </head>
 
-<body>
-
+<body data-aos-easing="ease-in-out" data-aos-duration="500" data-aos-delay="0">
     <!--preloader start-->
     <div id="preloader" class="bg-light-subtle">
         <div class="preloader-wrap">
@@ -86,7 +84,7 @@
         <footer class="footer-section">
             <!--footer top start-->
             <!--for light footer add .footer-light class and for dark footer add .bg-dark .text-white class-->
-            <div class="footer-top  bg-gradient text-white ptb-120"
+            <div class="footer-top  bg-gradient text-white pt-120"
                 style="background: url('{{ asset('assets/img/page-header-bg.svg') }}')no-repeat bottom right">
                 <div class="container">
                     <div class="row justify-content-between">
@@ -139,38 +137,21 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-lg-4 mt-4 mt-md-0 mt-lg-0">
+                                <div class="col-md-8 col-lg-8 mt-8 mt-md-0 mt-lg-0">
                                     <div class="footer-single-col">
-                                        <h3>Pages</h3>
+                                        <h3>Công ty Cổ phần NextVision </h3>
                                         <ul class="list-unstyled footer-nav-list mb-lg-0">
-                                            <li><a href="pricing.html" class="text-decoration-none">Pricing</a></li>
-                                            <li><a href="blog.html" class="text-decoration-none">Blog</a></li>
-                                            <li><a href="blog-single.html" class="text-decoration-none">Blog
-                                                    Details</a></li>
-                                            <li><a href="contact-us.html" class="text-decoration-none">Contact</a>
+                                            <li>Phòng 816, Tòa nhà CT5, Khu đô thị Mỹ Đình – Mễ Trì, Phạm Hùng, Nam Từ
+                                                Liêm, Hà Nội
                                             </li>
-                                            <li><a href="career-single.html" class="text-decoration-none">Career
-                                                    Single</a>
+                                            <li>90/28 Trần Văn ơn, Phường Tân Sơn Nhì, Quận Tân Phú, TP Hồ Chí Minh
                                             </li>
-                                            <li><a href="service-single.html" class="text-decoration-none">Services
-                                                    Single</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-lg-4 mt-4 mt-md-0 mt-lg-0">
-                                    <div class="footer-single-col">
-                                        <h3>Template</h3>
-                                        <ul class="list-unstyled footer-nav-list mb-lg-0">
-                                            <li><a href="contact-us.html" class="text-decoration-none">Contact</a>
+                                            <li>Tổng đài tư vấn và hỗ trợ khách hàng: 1900 61 29 </li>
+                                            <li>Hotline: 090 224 3822 (24/7)
                                             </li>
-                                            <li><a href="support.html" class="text-decoration-none">Support</a></li>
-                                            <li><a href="support-single.html" class="text-decoration-none">Support
-                                                    Single</a></li>
-                                            <li><a href="team.html" class="text-decoration-none">Our Team</a></li>
-                                            <li><a href="client-review.html" class="text-decoration-none">Customer
-                                                    Review</a></li>
-                                            <li><a href="career-single.html" class="text-decoration-none">Career
-                                                    Single</a>
+                                            <li>Từ 8h00 – 22h00 các ngày từ thứ 2 đến Chủ nhật
+                                            </li>
+                                            <li>Mã code: nextx.vn
                                             </li>
                                         </ul>
                                     </div>

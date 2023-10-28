@@ -159,7 +159,7 @@ class ProductService extends BaseService
 
     function detail($slug)
     {
-        $entry = $this->mainRepository->getModel()->findBySlug($slug);
+        $entry = $this->mainRepository->getModel()->findBySlug($slug)->load('prices');
 
         if (!$entry) {
             throw new AppServiceException("Sản phẩm không tồn tại");

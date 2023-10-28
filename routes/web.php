@@ -8,6 +8,7 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\PriceController as UserPriceController;
 use App\Http\Controllers\User\ProductController as UserProductController;
+use App\Models\PriceModel;
 use Illuminate\Support\Facades\Route;
 use Litespeed\LSCache\LSCache;
 use Spatie\Sitemap\SitemapGenerator;
@@ -83,4 +84,19 @@ Route::get('/createSitemap', function () {
             return $url;
         })
         ->writeToFile(public_path('sitemap.xml'));
+});
+
+Route::get('test', function () {
+    $prices = PriceModel::get([
+        "name",
+        "price",
+        "description",
+        "note",
+        "detail",
+        "warranty",
+        "product_id",
+        "status",
+    ]);
+
+    return response()->json($prices);
 });

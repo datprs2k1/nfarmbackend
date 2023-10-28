@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('name');
             $table->text('price');
             $table->text('description');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->text('detail');
-            $table->double('warranty')->default(1);
+            $table->integer('warranty')->nullable();
             $table->foreignId('product_id')->constrained();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

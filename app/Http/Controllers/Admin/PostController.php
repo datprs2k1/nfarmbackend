@@ -15,17 +15,12 @@ class PostController extends Controller
     protected $categoryService;
     public function __construct(CategoryService $categoryService)
     {
-        $route = Route::getCurrentRoute()->action['prefix'];
-        $this->title = collect(explode('/', $route))->map(function ($item) {
-            return ucfirst($item);
-        })->implode('/');
-
         $this->categoryService = $categoryService;
     }
 
     public function index()
     {
-        $title = $this->title;
+        $title = "AAAAAAAA";
         $status = PostStatusEnum::getStatus();
         $categories = $this->categoryService->mainRepository->where('type', CategoryTypeEnum::getValue('POST'))->get();
         return view('admin.pages.post.index', compact('title', 'status', 'categories'));

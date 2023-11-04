@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\PrefixController;
 use App\Http\Controllers\Api\User\AuthController;
+use App\Http\Controllers\Api\User\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +20,18 @@ Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
     Route::post('reset-password', [AuthController::class, 'resetPassword']);
-    Route::middleware(['auth:admin','role:customer'])->group(function () {
+    Route::middleware(['auth:admin', 'role:customer'])->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
     });
 });
 
-
+Route::group(['as' => 'api.user.'], function () {
+    Route::group(['middleware' => 'auth:admin'], function () {
+        Route::group(['prefix' => 'cart', 'controller' => CartController::class, 'as' => 'cart.'], function () {
+            Route::get('', 'get')->name('get');
+            Route::post('', 'update')->name('update');
+            Route::delete('{id}', 'destroy')->name('destroy');
+        });
+    });
+});

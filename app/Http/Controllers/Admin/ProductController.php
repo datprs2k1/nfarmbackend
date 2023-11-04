@@ -15,17 +15,12 @@ class ProductController extends Controller
     protected $categoryService;
     public function __construct(CategoryService $categoryService)
     {
-        $route = Route::getCurrentRoute()->action['prefix'];
-        $this->title = collect(explode('/', $route))->map(function ($item) {
-            return ucfirst($item);
-        })->implode('/');
-
         $this->categoryService = $categoryService;
     }
 
     public function index()
     {
-        $title = $this->title;
+        $title = "AAAAAAAA";
         $status = ProductStatusEnum::getStatus();
         $categories = $this->categoryService->mainRepository->where('type', CategoryTypeEnum::PRODUCT)->get();
         return view('admin.pages.product.index', compact('title', 'status', 'categories'));

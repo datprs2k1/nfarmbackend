@@ -17,17 +17,13 @@ class PriceController extends Controller
     protected $categoryService;
     public function __construct(CategoryService $categoryService)
     {
-        $route = Route::getCurrentRoute()->action['prefix'];
-        $this->title = collect(explode('/', $route))->map(function ($item) {
-            return ucfirst($item);
-        })->implode('/');
 
         $this->categoryService = $categoryService;
     }
 
     public function index()
     {
-        $title = $this->title;
+        $title = "AAAAAAAAAAAA";
         $status = PriceStatusEnum::getStatus();
         $products = ProductModel::get();
         return view('admin.pages.price.index', compact('title', 'status', 'products'));

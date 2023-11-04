@@ -46,7 +46,9 @@
 
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <a href="request-demo.html" class="btn btn-outline-primary mt-2">Thêm vào giỏ hàng</a>
+                                    <button class="btn btn-outline-primary mt-2 btn-add" data-id="{{ $item->id }}">Thêm
+                                        vào giỏ
+                                        hàng</button>
                                 </div>
 
                                 <!--pattern start-->
@@ -62,3 +64,43 @@
         </div>
     </section>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            $('.btn-add').on('click', function() {
+                var id = $(this).data('id');
+
+                $.ajax({
+                    url: '{{ route('api.user.cart.update') }}',
+                    type: 'POST',
+                    data: {
+                        price_id: id,
+                    },
+                    success: async function() {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'bottom-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            showCloseButton: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Thêm vào giỏ hàng thành công'
+                        })
+
+                        await getCart();
+                    }
+                });
+            })
+        })
+    </script>
+@endpush

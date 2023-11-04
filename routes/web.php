@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\PriceController as UserPriceController;
 use App\Http\Controllers\User\ProductController as UserProductController;
@@ -69,10 +70,14 @@ Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('product.detail');
 Route::get('/price/{slug}', [UserPriceController::class, 'show'])->name('price.detail');
 
-
-Route::get('/clearCache', function () {
-    LSCache::purgeAll();
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::group(['prefix' => 'cart', 'controller' => CartController::class, 'as' => 'cart.'], function () {
+        Route::get('', 'get')->name('get');
+    });
 });
+
+
+
 
 Route::get('/createSitemap', function () {
     SitemapGenerator::create(config('app.url'))

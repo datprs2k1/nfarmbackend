@@ -75,43 +75,16 @@
                             <div class="d-flex flex-row gap-1 align-items-center">
                                 <i class="fa-solid fa-cart-shopping text-primary fs-4"></i>
                                 <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    99+</span>
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    id="cart-count"></span>
                             </div>
                         </a>
                         <div class="dropdown-menu border-0 rounded-custom shadow py-0 bg-white dropdown-menu-start">
                             <div class="rounded-custom width-full">
                                 <div class="p-4">
-                                    <div class="dropdown-item d-flex align-items-start" href="#">
-                                        <div class="text pl-3">
-                                            <p class="fs-6 fw-bold">NEXTFARM FERTIKIT 4G - Cơ bản</p>
-                                            <p class="mb-0"><span class="text-primary">29.500.000 VNĐ
-                                                </span><span class="quantity ms-3">Số lượng:
-                                                    01</span></p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="dropdown-item d-flex align-items-start" href="#">
-                                        <div class="text pl-3">
-                                            <p class="fs-6 fw-bold">NEXTFARM FERTIKIT 4G - Cơ bản</p>
-                                            <p class="mb-0"><span class="text-primary">29.500.000 VNĐ
-                                                </span><span class="quantity ms-3">Số lượng:
-                                                    01</span></p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="dropdown-item d-flex align-items-start" href="#">
-                                        <div class="text pl-3">
-                                            <p class="fs-6 fw-bold">NEXTFARM FERTIKIT 4G - Cơ bản</p>
-                                            <p class="mb-0"><span class="text-primary">29.500.000 VNĐ
-                                                </span><span class="quantity ms-3">Số lượng:
-                                                    01</span></p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="dropdown-item text-center btn-link mt-3" href="#">
+                                    <div id="cart"></div>
+                                    <div class="dropdown-item text-center mt-3">
                                         <button type="button" class="btn btn-danger">Xem giỏ hàng</button>
-                                        <span class="ion-ios-arrow-round-forward"></span>
                                     </div>
                                 </div>
                             </div>

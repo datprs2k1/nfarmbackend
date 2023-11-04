@@ -183,6 +183,50 @@
     <script src="{{ asset('assets/js/vendors/aos.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/massonry.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        async function getCart() {
+            var html = '';
+
+            var x = `<div class="dropdown-item d-flex align-items-start" href="#"> <
+            div class = "text pl-3" >
+            <
+            p class = "fs-6 fw-bold" > NEXTFARM FERTIKIT 4 G - Cơ bản < /p> <
+            p class = "mb-0" > < span class = "text-primary" > 29.500 .000 VNĐ <
+                /span><span class="quantity ms-3">Số lượng:
+            01 < /span></p >
+                <
+                /div> < /
+            div > <a
+                hr >`
+
+
+            $.ajax({
+                url: '{{ route('api.user.cart.get') }}',
+                type: 'GET',
+                success: function(data) {
+                    data.map(item => {
+                        var route = '{{ route('product.detail', ['slug' => ':slug']) }}';
+                        route = route.replace(':slug', item.price.product.slug);
+                        html += `<a href="${route}"><div class="dropdown-item d-flex align-items-start" href="#"><div class="text pl-3" >
+            <p class = "fs-6 fw-bold" > ${item.price.name} - ${item.price.product.name}   </p> <p class = "mb-0" > <span class = "text-primary"> ${item.price.price} </span><span class="quantity ms-3">Số lượng:
+            ${item.quantity} </span></p>
+                </div></div><hr></a>`
+                    })
+
+                    $('#cart').html(html);
+                    $('#cart-count').html(data.length);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            getCart();
+
+
+        });
+    </script>
+    @stack('js')
     <!--endbuild-->
 </body>
 

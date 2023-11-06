@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\User\CartController;
+use App\Http\Controllers\Api\User\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,10 @@ Route::group(['as' => 'api.user.'], function () {
             Route::get('', 'get')->name('get');
             Route::post('', 'update')->name('update');
             Route::delete('{id}', 'destroy')->name('destroy');
+        });
+
+        Route::group(['prefix' => 'order', 'controller' => OrderController::class, 'as' => 'order.'], function () {
+            Route::post('', 'create')->name('create');
         });
     });
 });

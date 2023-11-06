@@ -21,12 +21,6 @@
                         </table>
                     </div> <!-- end table-responsive-->
 
-                    <!-- Add note input-->
-                    <div class="mt-3">
-                        <label for="example-textarea" class="form-label">Add a Note:</label>
-                        <textarea class="form-control" id="example-textarea" rows="3" placeholder="Write some note.."></textarea>
-                    </div>
-
                     <!-- action buttons-->
                     <div class="row mt-4">
                         <div class="col-sm-6">
@@ -53,23 +47,10 @@
                                 <tbody>
                                     <tr>
                                         <td>Grand Total :</td>
-                                        <td>$1571.19</td>
+                                        <td id="grand-total"></td>
                                     </tr>
-                                    <tr>
-                                        <td>Discount : </td>
-                                        <td>-$157.11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping Charge :</td>
-                                        <td>$25</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Estimated Tax : </td>
-                                        <td>$19.22</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Total :</th>
-                                        <th>$1458.3</th>
+                                    <th>Total :</th>
+                                    <th id="total"></th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -88,11 +69,12 @@
     <script>
         async function getCartData() {
             var html = ``;
+            var total = 0;
             $.ajax({
                 url: '{{ route('api.user.cart.get') }}',
                 type: 'GET',
                 success: function(data) {
-                    data.map(item => {
+                    data.data.map(item => {
                         var route = '{{ route('product.detail', ['slug' => ':slug']) }}';
                         route = route.replace(':slug', item.price.product.slug);
                         html += `<tr>
@@ -103,8 +85,8 @@
                                             <a href="${route}" class="text-body">${item.price.name} - ${item.price.product.name}</a>
                                         </p>
                                     </td>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
+                                    <td class="d-flex align-items-center font-16" height="80px">
+                                        <p class="m-0">
                                             <span>${item.price.price}</span>
                                         </p>
                                     </td>
@@ -112,17 +94,20 @@
                                         <input type="number" min="1" value="${item.quantity}" class="form-control btn-update"
                                             placeholder="Qty" data-id="${item.price.id}" style="width: 90px;">
                                     </td>
-                                    <td>
-                                        <p class="m-0 d-inline-block align-middle font-16">
-                                            <span>${item.total}</span>
+                                    <td class="d-flex align-items-center font-16" height="80px">
+                                        <p class="m-0">
+                                            <span>${item.totalText}</span>
                                         </p>
                                     <td>
-                                        <a href="javascript:void(0);" class="action-icon btn-delete" data-id="${item.price.id}"><i class="fas fa-trash"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon btn-delete" data-id="${item.id}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr><hr>`
                     })
 
                     $('#cart-data').html(html);
+
+                    $('#grand-total').html(data.total);
+                    $('#total').html(data.total);
 
                     $('.btn-update').on('change', function() {
                         console.log($(this).val());
@@ -145,8 +130,10 @@
                                     timerProgressBar: true,
                                     showCloseButton: true,
                                     didOpen: (toast) => {
-                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                        toast.addEventListener('mouseleave', Swal
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
                                             .resumeTimer)
                                     }
                                 })
@@ -181,8 +168,10 @@
                                     timerProgressBar: true,
                                     showCloseButton: true,
                                     didOpen: (toast) => {
-                                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                                        toast.addEventListener('mouseleave', Swal
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
                                             .resumeTimer)
                                     }
                                 })

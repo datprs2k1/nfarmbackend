@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PriceController as UserPriceController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Models\PriceModel;
@@ -74,8 +75,20 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::group(['prefix' => 'cart', 'controller' => CartController::class, 'as' => 'cart.'], function () {
         Route::get('', 'get')->name('get');
     });
+
+    Route::group(['prefix' => 'checkout', 'controller' => OrderController::class, 'as' => 'checkout'], function () {
+        Route::get('', 'checkout')->name('checkout');
+    });
+
+    Route::group(['prefix' => 'order', 'controller' => OrderController::class, 'as' => 'order.'], function () {
+        Route::get('{id}', 'show')->name('show');
+        Route::get('/payment/{id}', 'payment')->name('payment');
+    });
 });
 
+Route::group(['controller' => OrderController::class, 'as' => 'order.'], function () {
+    Route::get('return-vnpay', 'completePayment')->name('completePayment');
+});
 
 
 

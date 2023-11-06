@@ -6,6 +6,8 @@ use App\Repositories\Cart\CartRepository;
 use App\Repositories\Cart\ICartRepository;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\ICategoryRepository;
+use App\Repositories\Order\IOrderRepository;
+use App\Repositories\Order\OrderRepository;
 use App\Repositories\PasswordReset\IPasswordResetRepo;
 use App\Repositories\PasswordReset\PasswordResetRepo;
 use App\Repositories\Post\IPostRepository;
@@ -35,5 +37,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(IProductRepository::class, ProductRepository::class);
         $this->app->singleton(IPriceRepository::class, PriceRepository::class);
         $this->app->singleton(ICartRepository::class, CartRepository::class);
+        $this->app->singleton(IOrderRepository::class, OrderRepository::class);
     }
 }

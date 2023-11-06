@@ -205,7 +205,7 @@
                 url: '{{ route('api.user.cart.get') }}',
                 type: 'GET',
                 success: function(data) {
-                    data.map(item => {
+                    data.data.map(item => {
                         var route = '{{ route('product.detail', ['slug' => ':slug']) }}';
                         route = route.replace(':slug', item.price.product.slug);
                         html += `<a href="${route}"><div class="dropdown-item d-flex align-items-start" href="#"><div class="text pl-3" >
@@ -215,7 +215,7 @@
                     })
 
                     $('#cart').html(html);
-                    $('#cart-count').html(data.length);
+                    $('#cart-count').html(data.data.length);
                 }
             });
         }

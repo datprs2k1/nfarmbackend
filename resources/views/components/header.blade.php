@@ -83,6 +83,14 @@
                             <div class="rounded-custom width-full">
                                 <div class="p-4">
                                     <div id="cart"></div>
+                                    <a href="${route}">
+                                        <div class="dropdown-item d-flex align-items-middle" href="#">
+                                            <div class="text pl-3">
+                                                <p class = "fs-6 fw-bold">Tổng tiền: </p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </a>
                                     <div class="dropdown-item text-center mt-3">
                                         <button type="button" class="btn btn-danger">Xem giỏ hàng</button>
                                     </div>

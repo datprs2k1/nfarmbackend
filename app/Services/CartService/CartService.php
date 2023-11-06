@@ -24,11 +24,17 @@ class CartService extends BaseService
     {
         $entries = $this->mainRepository->with(['price' => ['product']])->where('user_id', auth()->user()->id)->get();
         $entries->each(function ($entry) {
-            $entry->total = number_format((double)$entry->price->price * $entry->quantity, 0, ',', '.') . ' VNĐ';
-            $entry->price->price = number_format((double)$entry->price->price, 0, ',', '.') . ' VNĐ';
+            $entry->total = $entry->quantity * $entry->price->price;
+            $entry->totalText = number_format((float)$entry->price->price * $entry->quantity, 0, ',', '.') . ' VNĐ';
+            $entry->price->price = number_format((float)$entry->price->price, 0, ',', '.') . ' VNĐ';
         });
 
-        return $this->sendSuccessResponse($entries);
+        $total = number_format((float) $entries->sum('total'), 0, ',', '.') . ' VNĐ';
+
+        return $this->sendSuccessResponse([
+            'data' => $entries,
+            'total' => $total
+        ]);
     }
 
 

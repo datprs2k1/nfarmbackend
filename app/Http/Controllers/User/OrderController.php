@@ -19,6 +19,16 @@ class OrderController extends Controller
         $this->categoryService = $categoryService;
     }
 
+    public function list()
+    {
+        $entries = OrderModel::where('user_id', auth()->user()->id)->get();
+
+        $entries->each(function ($entry) {
+            $entry->statusText = OrderStatusEnum::getDescription((int) $entry->status);
+        });
+        return view('pages.order.list', compact('entries'));
+    }
+
     public function checkout()
     {
         $entries = CartModel::with([

@@ -81,6 +81,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
     });
 
     Route::group(['prefix' => 'order', 'controller' => OrderController::class, 'as' => 'order.'], function () {
+        Route::get('', 'list')->name('list');
         Route::get('{id}', 'show')->name('show');
         Route::get('/payment/{id}', 'payment')->name('payment');
     });

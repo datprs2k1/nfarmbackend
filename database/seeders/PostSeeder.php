@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\Post\PostStatusEnum;
 use App\Enums\Post\PostTypeEnum;
+use App\Models\PostModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -195,7 +196,9 @@ class PostSeeder extends Seeder
 
         ];
 
-        DB::table("posts")->insert($data);
+        foreach (collect($data) as $item) {
+            PostModel::create($item);
+        }
 
         DB::statement("SET FOREIGN_KEY_CHECKS = 0");
     }

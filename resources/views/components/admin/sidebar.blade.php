@@ -36,7 +36,7 @@
         <ul class="side-nav">
             @foreach (collect(MENU) as $item)
                 <li class="side-nav-item {{ Route::currentRouteName() == $item['url'] ? 'menuitem-active' : '' }}">
-                    <a href="apps-calendar.html" class="side-nav-link">
+                    <a href="{{route($item['url'])}}" class="side-nav-link">
                         <i class="{{ $item['icon'] }}"></i>
                         <span> {{ $item['name'] }} </span>
                     </a>

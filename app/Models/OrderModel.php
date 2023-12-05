@@ -42,4 +42,8 @@ class OrderModel extends Model
     {
         return $this->belongsTo(UserModel::class, 'user_id', 'id');
     }
+
+    public function transactions() {
+        return $this->hasMany(TransactionModel::class,'order_id', 'id');
+    }
 }

@@ -28,16 +28,26 @@ const MENU = [
     ],
     [
         'name' => 'Sản phẩm',
-        'url' => 'admin.post.index',
+        'url' => 'admin.product.index',
         'icon' => 'uil uil-tachometer-fast',
     ],
     [
         'name' => 'Bảng giá',
-        'url' => 'admin.post.index',
+        'url' => 'admin.price.index',
         'icon' => 'uil-moneybag-alt',
     ],
     [
         'name' => 'Bài viết',
+        'url' => 'admin.post.index',
+        'icon' => 'uil-rss-alt',
+    ],
+    [
+        'name' => 'Đơn hàng',
+        'url' => 'admin.post.index',
+        'icon' => 'uil-rss-alt',
+    ],
+    [
+        'name' => 'Giao dịch',
         'url' => 'admin.post.index',
         'icon' => 'uil-rss-alt',
     ],

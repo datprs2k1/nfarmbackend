@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('image');
             $table->text('description');
             $table->text('content');
+            $table->text('slug');
             $table->foreignId('category_id')->constrained();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Requests\Post;
 use App\Enums\Post\PostStatusEnum;
 use App\Enums\Post\PostTypeEnum;
 use App\Http\Requests\_Abstract\ApiBaseRequest;
+use App\Models\CategoryModel;
 use App\Models\PostModel;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

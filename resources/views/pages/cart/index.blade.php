@@ -9,10 +9,10 @@
                         <table class="table table-borderless table-nowrap table-centered mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                                    <th>Tên</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng</th>
                                     <th style="width: 50px;"></th>
                                 </tr>
                             </thead>
@@ -26,12 +26,12 @@
                         <div class="col-sm-6">
                             <a href="apps-ecommerce-products.html"
                                 class="btn text-muted d-none d-sm-inline-block btn-link fw-semibold">
-                                <i class="mdi mdi-arrow-left"></i> Continue Shopping </a>
+                                <i class="mdi mdi-arrow-left"></i> Tiếp tục mua </a>
                         </div> <!-- end col -->
                         <div class="col-sm-6">
                             <div class="text-sm-end">
-                                <a href="apps-ecommerce-checkout.html" class="btn btn-danger">
-                                    <i class="mdi mdi-cart-plus me-1"></i> Checkout </a>
+                                <a href="{{route('checkout.checkout')}}" class="btn btn-danger">
+                                    <i class="mdi mdi-cart-plus me-1"></i> Đặt hàng </a>
                             </div>
                         </div> <!-- end col -->
                     </div> <!-- end row-->
@@ -40,16 +40,16 @@
 
                 <div class="col-lg-4">
                     <div class="border p-3 mt-4 mt-lg-0 rounded">
-                        <h4 class="header-title mb-3">Order Summary</h4>
+                        <h4 class="header-title mb-3">Tóm tắt</h4>
 
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <tbody>
                                     <tr>
-                                        <td>Grand Total :</td>
+                                        <td>Tổng :</td>
                                         <td id="grand-total"></td>
                                     </tr>
-                                    <th>Total :</th>
+                                    <th>Tổng :</th>
                                     <th id="total"></th>
                                     </tr>
                                 </tbody>

@@ -169,7 +169,7 @@
                 <!-- start copy -->
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                        <p style="margin: 0;">Nhấn vào nút bên dưới để xác nhận địa chỉ email của bạn. Nếu bạn không tạo yêu cầu này , bạn có thể xóa email này một cách an toàn.</p>
+                        <p style="margin: 0;">Mật khẩu mới của bạn là {{$newPassword}}.</p>
                     </td>
                 </tr>
                 <!-- end copy -->
@@ -183,8 +183,8 @@
                                     <table border="0" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                                                <a href="{{$url}}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">
-                                                    Đặt lại mật khẩu
+                                                <a href="{{route('login')}}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">
+                                                    Đăng nhập
                                                 </a>
                                             </td>
                                         </tr>
@@ -200,7 +200,7 @@
                 <tr>
                     <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
                         <p style="margin: 0;">Nếu không được, hãy sao chép và dán liên kết sau vào trình duyệt của bạn:</p>
-                        <p style="margin: 0;"><a href="{{$url}}" target="_blank">{{$url}}</a></p>
+                        <p style="margin: 0;"><a href="{{route('login')}}" target="_blank">{{route('login ')}}</a></p>
                     </td>
                 </tr>
                 <!-- end copy -->

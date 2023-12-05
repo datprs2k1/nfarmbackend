@@ -7,16 +7,21 @@ use App\Enums\Order\OrderStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\CartModel;
 use App\Models\OrderModel;
+use App\Models\TransactionModel;
 use App\Services\CategoryService\CategoryService;
+use App\Services\MailService\MailService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
     protected $categoryService;
+    protected $mailService;
 
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryService $categoryService, MailService $mailService)
     {
         $this->categoryService = $categoryService;
+        $this->mailService = $mailService;
     }
 
     public function list()
@@ -73,11 +78,11 @@ class OrderController extends Controller
         $vnp_TmnCode = "7Z5KK1NQ"; //Mã website tại VNPAY
         $vnp_HashSecret = "KRECGZVJAYMJAHVZSGJOUYFCVMZUGOQY"; //Chuỗi bí mật
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "https://nfarm.click/return-vnpay";
-        $vnp_TxnRef = $entry->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = "Thanh toán hóa đơn phí dich vụ";
+        $vnp_Returnurl = route('order.completePayment');
+        $vnp_TxnRef = Str::random(4) . '_' . $entry->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = "Thanh toán hóa đơn phí $entry->id";
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount = $entry->total;
+        $vnp_Amount = $entry->total * 100;
         $vnp_Locale = 'vn';
         $vnp_IpAddr = request()->ip();
 
@@ -123,8 +128,12 @@ class OrderController extends Controller
 
     public function completePayment(Request $request)
     {
-        $id = $request->get('vnp_TxnRef');
+        $id = explode('_', $request->get('vnp_TxnRef'))[1];
         $status = $request->get('vnp_ResponseCode');
+        $code = $request->get('vnp_TransactionNo');
+        $total = $request->get('vnp_Amount');
+        $message = $request->get('vnp_OrderInfo');
+        $status = 0;
 
         $entry = OrderModel::where('id', $id)->first();
 
@@ -132,7 +141,18 @@ class OrderController extends Controller
             $entry->update([
                 'status' => OrderStatusEnum::PAYED
             ]);
+
+            $this->mailService->sendPayment(auth()->user()->email, $entry);
+            $status = 1;
         }
+
+        $transaction = $entry->transactions()->create([
+            'code' => $code,
+            'total' => $total,
+            'message' => $message,
+            'status' => $status,
+            'user_id' => $entry->user->id
+        ]);
 
         return redirect()->route('order.show', ['id' => $id]);
     }

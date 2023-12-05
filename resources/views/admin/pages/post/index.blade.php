@@ -1,169 +1,148 @@
 @extends('admin.layouts.layout')
 
 @section('content')
-    <div class="card">
-        <div class="card-header card-header-primary card-header-icon">
-            <div class="card-icon">
-                <i class="material-icons">assignment</i>
-            </div>
-            <h4 class="card-title">Danh sách bài viết</h4>
-        </div>
-        <div class="card-body">
-            <div class="toolbar">
-
-            </div>
-            <div class="material-datatables">
-                <div id="datatables_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="mt-3 mb-3 row">
-                                <div class="col">
-                                    <button class="btn btn-info btn-round" id="add">
-                                        Thêm mới
-                                        <div class="ripple-container"></div>
-                                    </button>
-                                </div>
-                            </div>
-                            <table id="datatables"
-                                class="table table-striped table-no-bordered table-hover dataTable dtr-inline"
-                                cellspacing="0" width="100%" style="width: 100%;" role="grid"
-                                aria-describedby="datatables_info">
-                                <thead>
-                                    <tr role="row">
-                                        <th class="sorting_asc font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" aria-sort="ascending"
-                                            width="5%">
-                                            ID</th>
-                                        <th class="sorting_asc font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" aria-sort="ascending"
-                                            width="10%">
-                                            Ảnh</th>
-                                        <th class="sorting_asc font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" aria-sort="ascending"
-                                            width="20%">
-                                            Tên bài viết</th>
-                                        <th class="sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" width="20%">
-                                            Mô tả</th>
-                                        <th class="sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" width="20%">
-                                            Danh mục</th>
-                                        <th class="sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" width="10%">
-                                            Trạng thái</th>
-                                        <th class="disabled-sorting sorting font-weight-bold text-center" tabindex="0"
-                                            aria-controls="datatables" rowspan="1" colspan="1" width="10%">
-                                            Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                </tfoot>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                        <li class="breadcrumb-item active">Data Tables</li>
+                    </ol>
                 </div>
+                <h4 class="page-title">Data Tables</h4>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" id="add">
+                                <i class=" uil-plus font-16"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <table id="table" class="table table-striped dt-responsive nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ảnh</th>
+                                <th>Tên bài viết</th>
+                                <th>Mô tả</th>
+                                <th>Danh mục</th>
+                                <th>Trạng thái</th>
+                                <th>Hành dộng</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div> <!-- end card body-->
+            </div> <!-- end card -->
+        </div><!-- end col-->
+    </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        <i class="material-icons">close</i>
-                    </button>
+                <div class="modal-header modal-colored-header bg-primary">
+                    <h4 class="modal-title" id="primary-header-modalLabel">Modal Heading</h4>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-hidden="true"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Tên
-                            <small>*</small>
-                        </label>
-                        <input class="form-control" name="name" type="text" id="name" required="true"
-                            aria-required="true">
-                        <span class="material-input"></span>
-                    </div>
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Mô tả
-                            <small>*</small>
-                        </label>
-                        <textarea name="description" type="text" id="description" required="true" aria-required="true"></textarea>
-                        <span class="material-input"></span>
-                    </div>
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Nội dùng
-                            <small>*</small>
-                        </label>
-                        <textarea name="content" type="text" id="content" required="true" aria-required="true"></textarea>
-                        <span class="material-input"></span>
-                    </div>
-
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Danh mục
-                            <small>*</small>
-                        </label>
-                        <select class="form-control" name="status" type="text" id="category_id" required="true"
-                            aria-required="true">
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                        <span class="material-input"></span>
-                    </div>
-
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Trạng thái
-                            <small>*</small>
-                        </label>
-                        <select class="form-control" name="status" type="text" id="status" required="true"
-                            aria-required="true">
-                            @foreach ($status as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
-                        <span class="material-input"></span>
-                    </div>
-
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">
-                            Ảnh
-                            <small>*</small>
-                        </label>
-                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                            <div class="fileinput-new thumbnail">
-                                <img src="{{ asset('assets/img/image_placeholder.jpg') }}" alt="..." id="preview">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="mb-3">
+                                <label for="name" class="form-label font-20">Tên bài viết</label>
+                                <input type="text" name="name" class="form-control font-16" id="name"
+                                    placeholder="Tên sản phẩm" />
                             </div>
-                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                            <div>
-                                <span class="btn btn-rose btn-round btn-file" id="select">
-                                    <span class="fileinput-new">Select image</span>
-                                    <span class="fileinput-exists">Change</span>
-                                    <input type="file" name="..." id="image" />
-                                </span>
-                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
-                                    data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                            <div class="mb-3">
+                                <label for="description" class="form-label font-20">Mô tả</label>
+                                <input type="text" name="description" class="form-control font-16" id="description"
+                                    placeholder="Mô tả sản phẩm" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="content" class="form-label font-20">Nội dung</label>
+                                <div id="content" style="height: 200px;">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="mb-3 mt-3 mt-xl-0">
+                                <label for="image" class="form-label font-20">Ảnh</label>
+                                <p class="text-muted font-14">Recommended thumbnail size 800x400 (px).</p>
+
+                                <form action="/" method="post" class="dropzone" data-plugin="dropzone"
+                                    data-previews-container="#file-previews"
+                                    data-upload-preview-template="#uploadPreviewTemplate">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple id="image" />
+                                    </div>
+
+                                    <div class="dz-message needsclick">
+                                        <i class="h3 text-muted ri-upload-cloud-2-line"></i>
+                                        <h4>Drop files here or click to upload.</h4>
+                                    </div>
+                                </form>
+
+                                <!-- Preview -->
+                                <div class="dropzone-previews mt-3" id="file-previews"></div>
+
+                                <!-- file preview template -->
+                                <div class="d-none" id="uploadPreviewTemplate">
+                                    <div class="card mt-1 mb-0 shadow-none border">
+                                        <div class="p-2">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto">
+                                                    <img data-dz-thumbnail src="#" class="avatar-sm rounded bg-light"
+                                                        alt="">
+                                                </div>
+                                                <div class="col ps-0">
+                                                    <a href="javascript:void(0);" class="text-muted fw-bold"
+                                                        data-dz-name></a>
+                                                    <p class="mb-0" data-dz-size></p>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <!-- Button -->
+                                                    <a href="" class="btn btn-link btn-lg text-muted"
+                                                        data-dz-remove>
+                                                        <i class="ri-close-line"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end file preview template -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="product" class="form-label font-20">Danh mục</label>
+                                <select class="form-control select2" id="category">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="status" class="form-label font-20">Trạng thái</label>
+                                <select class="form-control select2" id="status">
+                                    @foreach ($status as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <span class="material-input"></span>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info btn-round mr-3" data-dismiss="modal" id="submit">Lưu
-                        lại
-                        <div class="ripple-container"></div>
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal" id="submit">Đóng
-                        <div class="ripple-container"></div>
-                    </button>
+                    <a href="javascript:void(0);" class="btn btn-light" data-bs-dismiss="modal">Đóng</a>
+                    <button type="button" class="btn btn-primary" id="submit">Lưu lại</button>
                 </div>
             </div>
         </div>
@@ -173,55 +152,112 @@
 @push('js')
     <script>
         $(document).ready(function() {
-            $('#content').summernote();
-            $('#description').summernote();
-            $('#datatables').DataTable({
+            $(".select2").select2({
+                dropdownParent: $("#modal")
+            });
+
+            var content = new Quill("#content", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        [{
+                            font: []
+                        }, {
+                            size: []
+                        }],
+                        ["bold", "italic", "underline", "strike"],
+                        [{
+                            color: []
+                        }, {
+                            background: []
+                        }],
+                        [{
+                            script: "super"
+                        }, {
+                            script: "sub"
+                        }],
+                        [{
+                            header: [!1, 1, 2, 3, 4, 5, 6]
+                        }, "blockquote", "code-block"],
+                        [{
+                            list: "ordered"
+                        }, {
+                            list: "bullet"
+                        }, {
+                            indent: "-1"
+                        }, {
+                            indent: "+1"
+                        }],
+                        ["direction", {
+                            align: []
+                        }],
+                        ["link", "image", "video"],
+                        ["clean"]
+                    ]
+                }
+            });
+
+            $('#table').DataTable({
                 processing: true,
                 serverSide: true,
+                language: {
+                    paginate: {
+                        previous: "<i class='mdi mdi-chevron-left'>",
+                        next: "<i class='mdi mdi-chevron-right'>"
+                    }
+                },
+                drawCallback: function() {
+                    $('.table_paginate > .pagination').addClass('pagination-rounded');
+                },
                 ajax: '{!! route('api.admin.post.get') !!}',
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
-                        className: 'text-center',
+                        className: 'text-center align-middle',
                     },
                     {
                         data: 'image',
                         name: 'image',
-                        className: 'text-center',
+                        className: 'text-center align-middle',
                         render: function(data, type, row, meta) {
                             return '<img src="' + row.image +
-                                '" class="img-thumbnail" style="height: 100px; width: 200px" alt="">';
+                                '" class="avatar-lg rounded bg-light"" alt="">';
                         }
                     },
                     {
                         data: 'name',
                         name: 'name',
-                        className: 'text-center',
+                        className: 'text-center align-middle',
+                        "render": function(data, type, row, meta) {
+                            var a = data.length > 30 ? data.substr(0, 30) + '...' : data;
+                            return $("<div/>").html(a).text();
+                        }
                     },
                     {
                         data: 'description',
                         name: 'description',
-                        className: 'text-left',
+                        className: 'text-left align-middle',
                         "render": function(data, type, row, meta) {
-                            return data.length > 100 ? data.substr(0, 100) + '...' : data;
+                            var a = data.length > 30 ? data.substr(0, 30) + '...' : data;
+                            return $("<div/>").html(a).text();
                         }
                     },
                     {
                         data: 'category.name',
-                        name: 'category',
-                        className: 'text-center',
+                        name: 'category.name',
+                        className: 'text-center align-middle',
                     },
                     {
                         data: 'status_text',
                         name: 'status_text',
-                        className: 'text-center'
+                        className: 'text-center align-middle'
                     },
                     {
                         data: 'actions',
                         name: 'actions',
                         orderable: false,
                         searchable: false,
-                        className: 'td-actions text-center'
+                        className: 'td-actions text-center align-middle'
                     }
                 ],
                 "paging": true,
@@ -237,20 +273,18 @@
             var mode = 'add';
             var id = '';
 
-            var modal = $('#noticeModal');
+            var modal = $('#modal');
             var title = $('#title');
             var name = $('#name');
             var description = $('#description');
-            var content = $('#content');
             var status = $('#status');
-            var image = $('#image');
-            var category_id = $('#category_id');
+            var category = $('#category');
             var submit = $('#submit');
-            var preview = $('#preview');
-            var select = $('#select');
+            var image = $('[data-plugin="dropzone"]');
+            var preview = $('#file-previews');
 
-            $(document).on('click', '#detail', function(e) {
-                title.text('Chi tiết danh mục');
+            $(document).on('click', '#show', function(e) {
+                title.text('Chi tiết sản phẩm');
 
                 id = $(this).data('id');
 
@@ -262,26 +296,44 @@
                     method: "GET",
                     success: function(data) {
                         name.val(data.name);
-                        description.summernote('code', data.description);
-                        content.summernote('code', data.content);
-                        category_id.val(data.category_id);
+                        description.val(data.description);
+                        content.clipboard.dangerouslyPasteHTML(data.content);
+                        category.val(data.category_id);
                         status.val(data.status);
-                        preview.attr('src', data.image);
+
+                        preview.html(`<div class="card mt-1 mb-0 shadow-none border dz-image-preview">
+                <div class="p-2">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img data-dz-thumbnail src="${data.image}" class="avatar-sm rounded bg-light"
+                                alt="">
+                        </div>
+                        <div class="col ps-0">
+                            <a href="javascript:void(0);" class="text-muted fw-bold"
+                                data-dz-name></a>
+                            <p class="mb-0" data-dz-size></p>
+                        </div>
+                        <div class="col-auto">
+                            <!-- Button -->
+                            <div class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                <i class="ri-close-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`);
 
                         name.prop('disabled', true);
-                        description.prop('disabled', true);
-                        content.prop('disabled', true);
+                        category.prop('disabled', true);
                         status.prop('disabled', true);
-                        category_id.prop('disabled', true);
-                        select.hide();
                         submit.hide();
 
-                        modal.modal('show', {
-                            backdrop:'static',
-                            keyboard: false
-                        });
+                        description.prop('disabled', true);
+                        content.disable();
 
-                        demo.showNotification('bottom', 'right')
+                        modal.modal('show', {
+                            focus: false
+                        });
                     },
                     error: function(error) {
                         console.log(error.responseJSON.message)
@@ -290,33 +342,32 @@
             });
 
             $(document).on('click', '#add', function(e) {
+                name.val("");
+                description.val("");
+                content.setContents("");
+
                 name.prop('disabled', false);
-                description.prop('disabled', false);
-                content.prop('disabled', false);
-                status.prop('disabled', false);
-                category_id.prop('disabled', false);
+                        category.prop('disabled', false);
+                        status.prop('disabled', false);
                 submit.show();
-                select.show();
 
-                title.text('Thêm danh mục');
+                description.prop('disabled', false);
+                content.enable();
+
+                title.text('Thêm sản phẩm');
                 mode = 'add';
-
-                modal.modal('show', {
-                            backdrop:'static',
-                            keyboard: false
-                        });
+                modal.modal('show');
             });
 
             $(document).on('click', '#edit', function(e) {
                 name.prop('disabled', false);
-                description.prop('disabled', false);
-                content.prop('disabled', false);
-                status.prop('disabled', false);
-                category_id.prop('disabled', false);
+                        category.prop('disabled', false);
+                        status.prop('disabled', false);
                 submit.show();
-                select.show();
 
-                title.text('Sửa danh mục');
+                description.prop('disabled', false);
+                content.enable();
+                title.text('Sửa sản phẩm');
                 mode = 'edit';
 
                 id = $(this).data('id');
@@ -329,16 +380,34 @@
                     method: "GET",
                     success: function(data) {
                         name.val(data.name);
-                        description.summernote('code', data.description);
-                        content.summernote('code', data.content);
-                        category_id.val(data.category_id);
+                        description.val(data.description);
+                        content.clipboard.dangerouslyPasteHTML(data.content);
+                        category.val(data.category_id);
                         status.val(data.status);
-                        preview.attr('src', data.image);
 
-                        modal.modal('show', {
-                            backdrop:'static',
-                            keyboard: false
-                        });
+                        preview.html(`<div class="card mt-1 mb-0 shadow-none border dz-image-preview">
+                <div class="p-2">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <img data-dz-thumbnail src="${data.image}" class="avatar-sm rounded bg-light"
+                                alt="">
+                        </div>
+                        <div class="col ps-0">
+                            <a href="javascript:void(0);" class="text-muted fw-bold"
+                                data-dz-name></a>
+                            <p class="mb-0" data-dz-size></p>
+                        </div>
+                        <div class="col-auto">
+                            <!-- Button -->
+                            <div class="btn btn-link btn-lg text-muted" data-dz-remove>
+                                <i class="ri-close-line"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`);
+
+                        modal.modal('show');
                     },
                     error: function(error) {
                         console.log(error.responseJSON.message)
@@ -362,10 +431,15 @@
                 const data = new FormData();
                 data.append('name', name.val());
                 data.append('description', description.val());
-                data.append('content', content.val());
+                data.append('content', content.root.innerHTML);
+                data.append('category_id', category.val());
                 data.append('status', status.val());
-                data.append('category_id', category_id.val());
-                data.append('image', image[0].files[0]);
+
+                console.log(image);
+
+                image[0].dropzone.files.map((value, key) => {
+                    data.append(`image`, value);
+                })
 
                 if (mode == 'edit') {
                     data.append('_method', 'PUT');
@@ -378,49 +452,71 @@
                     contentType: false,
                     processData: false,
                     success: function(data) {
-                        $('#datatables').DataTable().ajax.reload();
                         modal.modal('hide');
+
                         Swal.fire({
                             title: "Thành công!",
                             text: "Thành công!",
-                            type: "success",
+                            icon: "success",
                             button: "OK!",
-                        })
+                        });
+
+                        $('#table').DataTable().ajax.reload();
                     },
-                    error: function(error) {
-                        console.log(error.responseJSON.message)
-                    }
+                    error: function(e) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'bottom-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            showCloseButton: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: e.responseJSON.error_msg
+                        })                    }
                 });
             });
 
             $(document).on('click', '#delete', function(e) {
                 id = $(this).data('id');
-
                 route = '{{ route('api.admin.post.destroy', ['id' => ':id']) }}';
                 route = route.replace(':id', id);
 
                 Swal.fire({
                     title: "Bạn có chắc chắn muốn xóa?",
                     text: "Sau khi xóa, sẽ lưu ở thùng rác!",
-                    type: "warning",
+                    icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
                     confirmButtonText: "Vâng, tôi muốn xóa!",
                     cancelButtonText: "Không, hủy xóa!"
                 }).then((result) => {
-                    if (result) {
-
+                    if (result.isConfirmed) {
                         $.ajax({
                             url: route,
                             method: 'DELETE',
                             contentType: false,
                             processData: false,
                             success: function(data) {
-                                $('#datatables').DataTable().ajax.reload();
+                                Swal.fire({
+                                    title: "Thành công!",
+                                    text: "Thành công!",
+                                    icon: "success",
+                                    button: "OK!",
+                                });
+
+                                $('#table').DataTable().ajax.reload();
                             },
                             error: function(error) {
-                                console.log(error.responseJSON.message)
+                                console.log(error)
                             }
                         });
                     }

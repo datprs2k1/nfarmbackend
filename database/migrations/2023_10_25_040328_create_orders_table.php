@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('ward');
             $table->string('district');
             $table->string('province');
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->bigInteger('total');
             $table->tinyInteger('status');
             $table->foreignId('user_id')->constrained();

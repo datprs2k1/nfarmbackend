@@ -2,8 +2,8 @@
     <nav class="navbar navbar-expand-xl navbar-light sticky-header">
         <div class="container d-flex align-items-center justify-content-lg-between position-relative">
             <a href="https://nfarm.dev" class="navbar-brand d-flex align-items-center mb-md-0 text-decoration-none">
-                <img src="https://nfarm.dev/assets/img/logo-white.png" alt="logo" class="img-fluid logo-white">
-                <img src="https://nfarm.dev/assets/img/logo-color.png" alt="logo" class="img-fluid logo-color">
+                <img src="{{asset('assets/img/logo.png')}}" alt="logo" width="200px" class="img-fluid logo-white">
+                <img src="{{asset('assets/img/logo.png')}}" alt="logo" width="200px" class="img-fluid logo-color">
             </a>
 
             <a class="navbar-toggler position-absolute right-0 border-0 " href="#offcanvasWithBackdrop" role="button">
@@ -42,7 +42,6 @@
                             </div>
                         </div>
                     </li>
-                    <li><a href="pricing.html" class="nav-link fs-6 text-dark">Bảng giá</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle fs-6 text-dark" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Tin tức</a>
@@ -51,8 +50,8 @@
                                 @foreach ($posts as $post)
                                     <div class="dropdown-grid-item">
                                         @foreach ($post as $item)
-                                            <a href="about-us.html" class="dropdown-link px-0">
-                                                <span class="me-2"><i class="far fa-fingerprint"></i></span>
+                                            <a href="{{route('category.detail', ['slug' => $item->slug])}}" class="dropdown-link px-0">
+                                                <span class="me-2"><i class="flaticon-menu"></i></span>
                                                 <div class="drop-title">{{ $item->name }}</div>
                                             </a>
                                         @endforeach
@@ -68,6 +67,7 @@
             </div>
 
             <div class="action-btns me-5 me-lg-0 d-none d-md-block d-lg-block">
+                @auth
                 <div class="d-flex flex-row gap-3 align-items-center">
                     <div class="dropdown me-2">
                         <a class="" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -83,16 +83,16 @@
                             <div class="rounded-custom width-full">
                                 <div class="p-4">
                                     <div id="cart"></div>
-                                    <a href="${route}">
                                         <div class="dropdown-item d-flex align-items-middle" href="#">
                                             <div class="text pl-3">
-                                                <p class = "fs-6 fw-bold">Tổng tiền: </p>
+                                                <p class = "fs-6 fw-bold">Tổng tiền: <span id="total-cart"></span></p>
                                             </div>
                                         </div>
                                         <hr>
-                                    </a>
                                     <div class="dropdown-item text-center mt-3">
+                                       <a href="{{route('cart.get')}}">
                                         <button type="button" class="btn btn-danger">Xem giỏ hàng</button>
+                                       </a>
                                     </div>
                                 </div>
                             </div>
@@ -107,44 +107,36 @@
                                         width="32" class="rounded-circle">
                                 </span>
                                 <span class="d-lg-flex flex-column gap-1 d-none">
-                                    <h6 class="my-0">admin</h6>
+                                    <h6 class="my-0">{{auth()->user()->name}}</h6>
                                 </span>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated">
                             <!-- item-->
-                            <div class=" dropdown-header noti-title">
-                                <h6 class="text-overflow m-0">Welcome !</h6>
-                            </div>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="{{route('account.index')}}" class="dropdown-item">
                                 <i class="mdi mdi-account-circle me-1"></i>
-                                <span>My Account</span>
+                                <span>Tài khoản</span>
                             </a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="mdi mdi-account-edit me-1"></i>
-                                <span>Settings</span>
+                            <a href="{{route('order.list')}}" class="dropdown-item">
+                                <i class="mdi mdi-account-circle me-1"></i>
+                                <span>Đơn hàng</span>
                             </a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="mdi mdi-lifebuoy me-1"></i>
-                                <span>Support</span>
-                            </a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
-                                <i class="mdi mdi-lock-outline me-1"></i>
-                                <span>Lock Screen</span>
-                            </a>
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">
+                            <a href="{{route('logout')}}" class="dropdown-item">
                                 <i class="mdi mdi-logout me-1"></i>
-                                <span>Logout</span>
+                                <span>Đăng xuất</span>
                             </a>
                         </div>
                     </div>
 
                 </div>
+                @endauth
+                @guest
+                <a href="{{route('login')}}" class="btn btn-link text-decoration-none me-2">Đăng nhập</a>
+                <a href="{{route('login')}}" class="btn btn-primary">Đăng ký</a>
+            @endguest
             </div>
         </div>
     </nav>

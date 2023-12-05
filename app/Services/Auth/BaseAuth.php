@@ -9,6 +9,7 @@ use App\Repositories\User\IUserRepository;
 use App\Services\_Abstract\BaseService;
 use App\Services\_Exception\AppServiceException;
 use App\Services\MailService\IMailService;
+use App\Services\MailService\MailService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ abstract class BaseAuth extends BaseService implements AuthContract
     protected $passwordResetRepo;
     protected $mailService;
 
-    function __construct(IUserRepository $mainRepository, IPasswordResetRepo $passwordResetRepo, IMailService $mailService)
+    function __construct(IUserRepository $mainRepository, IPasswordResetRepo $passwordResetRepo, MailService $mailService)
     {
         $this->mainRepository = $mainRepository;
         $this->passwordResetRepo = $passwordResetRepo;
@@ -52,9 +53,12 @@ abstract class BaseAuth extends BaseService implements AuthContract
         if ($this->mainRepository->findWhere(['email' => $dataRegister['email'], "deleted_at" => null])->first()) {
             throw new AppServiceException("Địa chỉ email đã tồn tại !");
         }
+        $dataRegister['status'] = 0;
         $user = $this->mainRepository->create($dataRegister);
         $role = Role::findByName(ROLE_CUSTOMER);
         $user->assignRole($role);
+
+        $this->mailService->sendRegister($user->email, route('login'));
 
         return $user;
     }

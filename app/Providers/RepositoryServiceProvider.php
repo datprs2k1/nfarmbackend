@@ -16,6 +16,8 @@ use App\Repositories\Price\IPriceRepository;
 use App\Repositories\Price\PriceRepository;
 use App\Repositories\Product\IProductRepository;
 use App\Repositories\Product\ProductRepository;
+use App\Repositories\Transaction\ITransactionRepository;
+use App\Repositories\Transaction\TransactionRepository;
 use App\Repositories\User\IUserRepository;
 use App\Repositories\User\UserRepository;
 use App\Services\MailService\IMailService;
@@ -38,5 +40,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(IPriceRepository::class, PriceRepository::class);
         $this->app->singleton(ICartRepository::class, CartRepository::class);
         $this->app->singleton(IOrderRepository::class, OrderRepository::class);
+        $this->app->singleton(ITransactionRepository::class, TransactionRepository::class);
     }
 }

@@ -84,24 +84,9 @@
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-lg-5 col-md-8 col-12">
-                        <a href="index.html" class="mb-4 d-block text-center"><img src="assets/img/logo-white.png"
+                        <a href="index.html" class="mb-4 d-block text-center"><img src="{{asset('assets/img/logo.png')}}"
                                 alt="logo" class="img-fluid"></a>
                         <div class="register-wrap p-5 bg-light-subtle shadow rounded-custom">
-                            <h1 class="h3">Nice to Seeing You Again</h1>
-                            <p class="text-muted">Please log in to access your account web-enabled methods of innovative
-                                niches.</p>
-
-                            <div class="action-btns">
-                                <a href="#"
-                                    class="btn google-btn bg-white shadow-sm mt-4 d-block d-flex align-items-center text-decoration-none justify-content-center">
-                                    <img src="assets/img/google-icon.svg" alt="google" class="me-3">
-                                    <span>Connect with Google</span>
-                                </a>
-                            </div>
-                            <div class="position-relative d-flex align-items-center justify-content-center mt-4 py-4">
-                                <span class="divider-bar"></span>
-                                <h6 class="position-absolute text-center divider-text bg-light-subtle mb-0">Or</h6>
-                            </div>
                             <form action="#" class="mt-4 register-form">
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -113,22 +98,23 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
-                                        <label for="password" class="mb-1">Password <span
+                                        <label for="password" class="mb-1">Mật khẩu <span
                                                 class="text-danger">*</span></label>
                                         <div class="input-group mb-3">
                                             <input type="password" class="form-control" placeholder="Password"
                                                 id="password" required="" aria-label="Password">
+                                                <div class="invalid-feedback">
+                                                </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary mt-3 d-block w-100"
-                                            id="submit">Submit</button>
+                                            id="submit">Đăng nhập</button>
                                     </div>
                                 </div>
-                                <p class="font-monospace fw-medium text-center text-muted mt-3 pt-4 mb-0">Don’t have an
-                                    account? <a href="register.html" class="text-decoration-none">Sign up Today</a>
+                                <p class="font-monospace fw-medium text-center text-muted mt-3 pt-4 mb-0">Chưa có tài khoản? <a href="{{route('register')}}" class="text-decoration-none">Đăng ký ngay</a>
                                     <br>
-                                    <a href="password-reset.html" class="text-decoration-none">Forgot password</a>
+                                    <a href="{{route('recovery')}}" class="text-decoration-none">Quên mật khẩu</a>
                                 </p>
                             </form>
                         </div>
@@ -148,6 +134,7 @@
     <script src="assets/js/vendors/aos.js"></script>
     <script src="assets/js/vendors/massonry.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--endbuild-->
 
     <script>
@@ -176,6 +163,25 @@
                     },
                     success: function() {
                         window.location.href = '{{ route('home') }}';
+                    },
+                    error: function(e) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'bottom-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            showCloseButton: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: e.responseJSON.hasOwnProperty('status') ? "Tài khoản hoặc mật khẩu không chính xác" : e.responseJSON.error_msg
+                        })
                     }
                 });
             });

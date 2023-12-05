@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\Category\CategoryStatusEnum;
 use App\Enums\Category\CategoryTypeEnum;
+use App\Models\CategoryModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -110,7 +111,9 @@ class CategorySeeder extends Seeder
             ],
         ];
 
-        DB::table('categories')->insert($data);
+        foreach (collect($data) as $item) {
+            CategoryModel::create($item);
+        }
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
     }

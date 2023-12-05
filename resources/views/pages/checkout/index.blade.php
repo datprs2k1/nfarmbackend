@@ -24,9 +24,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="email-address" class="form-label">Email<span
+                                    <label for="email" class="form-label">Email<span
                                             class="text-danger">*</span></label>
-                                    <input class="form-control" type="email" placeholder="Email" id="email-address">
+                                    <input class="form-control" type="email" placeholder="Email" id="email">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="border p-3 mt-4 mt-lg-0 rounded">
-                        <h4 class="header-title mb-3">Order Summary</h4>
+                        <h4 class="header-title mb-3">Tóm tắt</h4>
 
                         <div class="table-responsive">
                             <table class="table table-nowrap table-centered mb-0">
@@ -104,7 +104,7 @@
                                     @endforeach
                                     <tr class="">
                                         <td>
-                                            <h6 class="m-0">Shipping:</h6>
+                                            <h6 class="m-0">Giao hàng:</h6>
                                         </td>
                                         <td class="">
                                             Miễn phí
@@ -236,6 +236,25 @@
                         route = '{{ route('order.show', ['id' => ':id']) }}';
                         route = route.replace(':id', data.id);
                         window.location.href = route;
+                    },
+                    error: function(e) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'bottom-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            showCloseButton: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            title: e.responseJSON.hasOwnProperty('status') ? "Tài khoản hoặc mật khẩu không chính xác" : e.responseJSON.error_msg
+                        })
                     }
                 });
             })

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     <!--hero section start-->
     <section class="hero-section ptb-120 text-white bg-gradient"
         style="background: url('assets/img/hero-dot-bg.png')no-repeat center right">
@@ -17,12 +18,6 @@
                             đại hóa Nông nghiệp tại Việt Nam, Nextfarm là sản phẩm tập trung cho thị trường trong
                             nước, nextX.ai là sản phẩm tập trung vào thị trường nước ngoài.
                         </p>
-                        <div class="action-btn mt-5 align-items-center d-block d-sm-flex d-lg-flex d-md-flex">
-                            <a href="request-demo.html" class="btn btn-primary me-3">Request For Demo</a>
-                            <a href="http://www.youtube.com/watch?v=hAP2QF--2Dg"
-                                class="text-decoration-none popup-youtube d-inline-flex align-items-center watch-now-btn mt-3 mt-lg-0 mt-md-0">
-                                <i class="fas fa-play"></i> Watch Demo </a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-8 mt-5">
@@ -233,115 +228,31 @@
                     </div>
                 </div>
                 <div class="row">
+                    @foreach ($posts as $post)
                     <div class="col-lg-4 col-md-6">
                         <div class="single-article rounded-custom mb-4 mb-lg-0">
-                            <a href="blog-single.html" class="article-img">
-                                <img src="assets/img/blog/blog-1.jpg" alt="article" class="img-fluid">
+                            <a href="{{route('post.detail', ['slug' => $post->slug])}}" class="article-img">
+                                <img src="{{$post->image}}" alt="article" class="img-fluid">
                             </a>
                             <div class="article-content p-4">
                                 <div class="article-category mb-4 d-block">
-                                    <a href="javascript:;"
-                                        class="d-inline-block text-warning badge bg-warning-soft">Design</a>
+                                    <a href="{{route('category.detail', ['slug' => $post->category->slug])}}"
+                                        class="d-inline-block text-warning badge bg-warning-soft">{{$post->category->name}}</a>
                                 </div>
-                                <a href="blog-single.html">
-                                    <h2 class="h5 article-title limit-2-line-text">Do you really understand the concept
-                                        of product value?</h2>
+                                <a href="{{route('post.detail', ['slug' => $post->slug])}}">
+                                    <h2 class="h5 article-title limit-2-line-text">{{$post->name}}</h2>
                                 </a>
-                                <p class="limit-2-line-text">Society is fragmenting into two parallel realities. In one
-                                    reality, you have infinite upside and opportunity. In the other reality, you’ll
-                                    continue to see the gap between your standard of living and those at the top grow
-                                    more and more.</p>
-
-                                <a href="javascript:;">
-                                    <div class="d-flex align-items-center pt-4">
-                                        <div class="avatar">
-                                            <img src="assets/img/testimonial/6.jpg" alt="avatar" width="40"
-                                                class="img-fluid rounded-circle me-3">
-                                        </div>
-                                        <div class="avatar-info">
-                                            <h6 class="mb-0 avatar-name">Jane Martin</h6>
-                                            <span class="small fw-medium text-muted">April 24, 2021</span>
-                                        </div>
-                                    </div>
-                                </a>
+                                <p class="limit-2-line-text">{{$post->description}}</p>
+                                </p>
 
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-article rounded-custom mb-4 mb-lg-0">
-                            <a href="blog-single.html" class="article-img">
-                                <img src="assets/img/blog/blog-2.jpg" alt="article" class="img-fluid">
-                            </a>
-                            <div class="article-content p-4">
-                                <div class="article-category mb-4 d-block">
-                                    <a href="javascript:;"
-                                        class="d-inline-block text-primary badge bg-primary-soft">Customer</a>
-                                </div>
-                                <a href="blog-single.html">
-                                    <h2 class="h5 article-title limit-2-line-text">Why communities help you build
-                                        better products for your business</h2>
-                                </a>
-                                <p class="limit-2-line-text">Society is fragmenting into two parallel realities. In one
-                                    reality, you have infinite upside and opportunity. In the other reality, you’ll
-                                    continue to see the gap between your standard of living and those at the top grow
-                                    more and more.</p>
-
-                                <a href="javascript:;">
-                                    <div class="d-flex align-items-center pt-4">
-                                        <div class="avatar">
-                                            <img src="assets/img/testimonial/1.jpg" alt="avatar" width="40"
-                                                class="img-fluid rounded-circle me-3">
-                                        </div>
-                                        <div class="avatar-info">
-                                            <h6 class="mb-0 avatar-name">Veronica P. Byrd</h6>
-                                            <span class="small fw-medium text-muted">April 24, 2021</span>
-                                        </div>
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-article rounded-custom mb-4 mb-lg-0 mb-md-0">
-                            <a href="blog-single.html" class="article-img">
-                                <img src="assets/img/blog/blog-3.jpg" alt="article" class="img-fluid">
-                            </a>
-                            <div class="article-content p-4">
-                                <div class="article-category mb-4 d-block">
-                                    <a href="javascript:;"
-                                        class="d-inline-block text-danger badge bg-danger-soft">Development</a>
-                                </div>
-                                <a href="blog-single.html">
-                                    <h2 class="h5 article-title limit-2-line-text">Why communities help you build
-                                        better products</h2>
-                                </a>
-                                <p class="limit-2-line-text">Society is fragmenting into two parallel realities. In one
-                                    reality, you have infinite upside and opportunity. In the other reality, you’ll
-                                    continue to see the gap between your standard of living and those at the top grow
-                                    more and more.</p>
-
-                                <a href="javascript:;">
-                                    <div class="d-flex align-items-center pt-4">
-                                        <div class="avatar">
-                                            <img src="assets/img/testimonial/3.jpg" alt="avatar" width="40"
-                                                class="img-fluid rounded-circle me-3">
-                                        </div>
-                                        <div class="avatar-info">
-                                            <h6 class="mb-0 avatar-name">Martin Gilbert</h6>
-                                            <span class="small fw-medium text-muted">April 24, 2021</span>
-                                        </div>
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="row justify-content-center">
                     <div class="text-center mt-5">
-                        <a href="blog.html" class="btn btn-primary">View All Article</a>
+                        <a href="blog.html" class="btn btn-primary">Xem thêm</a>
                     </div>
                 </div>
             </div>
@@ -368,7 +279,7 @@
                                     </p>
                                 </div>
                                 <div class="mt-auto">
-                                    <a href="request-demo.html" class="btn btn-outline-primary btn-sm">Start For Free</a>
+                                    <a href="" class="btn btn-outline-primary btn-sm">Tìm hiểu</a>
                                 </div>
                                 <div class="cta-img position-absolute right-0 bottom-0">
                                     <img src="{{ asset('assets/img/cta-img-1') }}.png" alt="cta img" class="img-fluid">
@@ -384,7 +295,7 @@
                                     </p>
                                 </div>
                                 <div class="mt-auto">
-                                    <a href="request-demo.html" class="btn btn-outline-primary btn-sm">Start For Free</a>
+                                    <a href="" class="btn btn-outline-primary btn-sm">Tìm hiểu</a>
                                 </div>
                                 <div class="cta-img position-absolute right-0 bottom-0">
                                     <img src="{{ asset('assets/img/cta-img-2') }}.png" alt="cta img" class="img-fluid">
@@ -400,7 +311,7 @@
                                     </p>
                                 </div>
                                 <div class="mt-auto">
-                                    <a href="request-demo.html" class="btn btn-outline-primary btn-sm">Start For Free</a>
+                                    <a href="" class="btn btn-outline-primary btn-sm">Tìm hiểu</a>
                                 </div>
                                 <div class="cta-img position-absolute right-0 bottom-0">
                                     <img src="{{ asset('assets/img/cta-img-2') }}.png" alt="cta img" class="img-fluid">
@@ -419,8 +330,7 @@
             <div class="row justify-content-center align-content-center">
                 <div class="col-md-10 col-lg-6">
                     <div class="section-heading text-center">
-                        <h4 class="h5 text-warning text-primary">Testimonial</h4>
-                        <h2>What They Say About Us</h2>
+                        <h2>Khách hàng nói gì về chúng tôi</h2>
                         <p>Uniquely promote adaptive quality vectors rather than stand-alone e-markets. pontificate
                             alternative architectures whereas iterate.</p>
                     </div>

@@ -21,4 +21,21 @@ class LoginRequest extends ApiBaseRequest
             'password' => 'required|string|max:50|min:6'
         ];
     }
+
+    public function attributes() {
+        return [
+            'email' => 'Địa chỉ email',
+            'password' => 'Mật khẩu'
+        ];
+    }
+
+    public function messages() {
+        return [
+            'required' => ':attribute không được để trống',
+            'max' => ':attribute tối đa :max ký tự',
+            'string' => ':attribute phải là kiểu ký tự',
+            'min' => ':attribute phải có ít nhất :min ký tự',
+            'email' => ':attribute phải là dạng email',
+        ];
+    }
 }

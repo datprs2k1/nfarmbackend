@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\Api\Admin\CategoryController;
+use App\Http\Controllers\Api\Admin\OrderController;
 use App\Http\Controllers\Api\Admin\PostController;
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\Admin\PrefixController;
 use App\Http\Controllers\Api\Admin\PriceController;
 use App\Http\Controllers\Api\Admin\ProductController;
+use App\Http\Controllers\Api\Admin\ReportController;
+use App\Http\Controllers\Api\Admin\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->as("api.admin.")->group(function () {
     Route::post('login', [AuthController::class, 'login'])->name("login");
-    Route::post('register', [AuthController::class, 'register']);
+    Route::post('register', [AuthController::class, 'register'])->name("register");
 });
 
 Route::middleware('auth:admin')->as("api.admin.")->group( function () {
@@ -53,6 +56,19 @@ Route::middleware('auth:admin')->as("api.admin.")->group( function () {
             Route::post('', [PriceController::class,'store'])->name('store');
             Route::put('{id}', [PriceController::class, 'update'])->name('update');
             Route::delete('{id}', [PriceController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
+            Route::get('', [OrderController::class, 'get'])->name('get');
+        });
+
+        Route::group(['prefix' => 'transaction', 'as' => 'transaction.'], function () {
+            Route::get('', [TransactionController::class, 'get'])->name('get');
+        });
+
+        Route::group(['prefix' => 'report', 'as' => 'report.'], function () {
+            Route::get('/orders', [ReportController::class, 'getOrder'])->name('getOrder');
+            Route::get('/revenue', [ReportController::class, 'getRevenue'])->name('getRevenue');
         });
     });
 });

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\User\CartController;
 use App\Http\Controllers\Api\User\OrderController;
+use App\Http\Controllers\Api\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
-    Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::post('forgot-password', [UserController::class, 'recovery'])->name('forgot-password');
     Route::post('reset-password', [AuthController::class, 'resetPassword']);
     Route::middleware(['auth:admin', 'role:customer'])->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
@@ -37,6 +38,11 @@ Route::group(['as' => 'api.user.'], function () {
 
         Route::group(['prefix' => 'order', 'controller' => OrderController::class, 'as' => 'order.'], function () {
             Route::post('', 'create')->name('create');
+        });
+
+        Route::group(['prefix' => 'account', 'controller' => UserController::class, 'as' => 'account.'], function () {
+            Route::put('', 'update')->name('update');
+            Route::put('/changepassword', 'changePassword')->name('changePassword');
         });
     });
 });

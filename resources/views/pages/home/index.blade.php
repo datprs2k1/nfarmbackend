@@ -252,7 +252,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="text-center mt-5">
-                        <a href="blog.html" class="btn btn-primary">Xem thêm</a>
+                        <a href="" class="btn btn-primary">Xem thêm</a>
                     </div>
                 </div>
             </div>

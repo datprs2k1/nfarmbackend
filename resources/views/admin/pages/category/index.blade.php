@@ -1,5 +1,9 @@
 @extends('admin.layouts.layout')
 
+@section('title')
+Danh mục - NFarm
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -130,14 +134,9 @@
                         className: 'text-center align-middle',
                     },
                     {
-                        data: 'status_text',
-                        name: 'status_text',
+                        data: 'statusText',
+                        name: 'statusText',
                         className: 'text-center',
-                        render: function(data, type, row, meta) {
-                            return row.status === 1 ?
-                                '<h4><span class="badge bg-success">Hoạt động</span></h4>' :
-                                '<h4><span class="badge bg-danger">Không hoạt động</span></h4>'
-                        }
                     },
                     {
                         data: 'actions',

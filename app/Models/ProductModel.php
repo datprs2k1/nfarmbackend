@@ -6,12 +6,13 @@ use App\Enums\Post\PostStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class ProductModel extends Model
 {
-    use HasFactory, SoftDeletes, HasSlug;
+    use HasFactory, SoftDeletes, HasSlug, Searchable;
 
     protected $table = 'products';
 
@@ -58,5 +59,19 @@ class ProductModel extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'image' => $this->image,
+            'description' => $this->description,
+            'detail' => $this->detail,
+            'future' => $this->future,
+            'status' => $this->status,
+            'category_id' => $this->category_id,
+        ];
     }
 }

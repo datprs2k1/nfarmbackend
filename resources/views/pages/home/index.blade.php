@@ -331,8 +331,6 @@
                 <div class="col-md-10 col-lg-6">
                     <div class="section-heading text-center">
                         <h2>Khách hàng nói gì về chúng tôi</h2>
-                        <p>Uniquely promote adaptive quality vectors rather than stand-alone e-markets. pontificate
-                            alternative architectures whereas iterate.</p>
                     </div>
                 </div>
             </div>
@@ -346,8 +344,7 @@
                                         <img src="{{ asset('assets/img/testimonial/quotes-left') }}.svg"
                                             alt="testimonial quote" width="65" class="img-fluid mb-32">
                                         <div class="blockquote-title-review mb-4">
-                                            <h3 class="mb-0 h4 fw-semi-bold">The Best Template You Got to Have it!
-                                            </h3>
+
                                             <ul class="review-rate mb-0 list-unstyled list-inline">
                                                 <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
                                                 </li>
@@ -363,16 +360,10 @@
                                         </div>
 
                                         <blockquote class="blockquote">
-                                            <p>Globally network long-term high-impact schemas vis-a-vis distinctive
-                                                e-commerce
-                                                cross-media infrastructures rather than ethical sticky alignments
-                                                rather
-                                                than global. Plagiarize technically sound total linkage for
-                                                leveraged value media web-readiness and premium processes.</p>
+                                            <p class="h6">Tôi đã sử dụng giải pháp nông nghiệp thông minh của NextFarm và tôi thực sự ấn tượng với hiệu suất và tiện ích mà nó mang lại. Hệ thống giúp tối ưu hóa quy trình quản lý nông trại của tôi, từ giám sát cây trồng đến quản lý tài nguyên nước. Điều này không chỉ giúp tôi tiết kiệm thời gian mà còn tăng cường hiệu suất nông nghiệp của mình.</p>
                                         </blockquote>
                                         <div class="author-info mt-4">
-                                            <h6 class="mb-0">Joe Richard</h6>
-                                            <span>Visual Designer</span>
+                                            <h6 class="mb-0">Ngọc Anh</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -402,7 +393,6 @@
                                         <img src="{{ asset('assets/img/testimonial/quotes-left') }}.svg"
                                             alt="testimonial quote" width="65" class="img-fluid mb-32">
                                         <div class="blockquote-title-review mb-4">
-                                            <h3 class="mb-0 h4 fw-semi-bold">Embarrassed by the First Version.</h3>
                                             <ul class="review-rate mb-0 list-unstyled list-inline">
                                                 <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
                                                 </li>
@@ -417,14 +407,10 @@
                                             </ul>
                                         </div>
                                         <blockquote class="blockquote">
-                                            <p>Energistically streamline robust architectures whereas distributed
-                                                mindshare. Intrinsicly leverage other's backend growth strategies
-                                                through 24/365 products. Conveniently pursue revolutionary
-                                                communities for compelling process improvements. </p>
+                                            <p class="h6">NextFarm thật sự làm thay đổi cách tôi quản lý nông trại. Họ cung cấp giải pháp nông nghiệp thông minh độc đáo, giúp tối ưu hóa sử dụng nguồn nước, phân bón và giảm thiểu lãng phí. Hệ thống theo dõi thời tiết và cảm biến thông minh giúp tôi đưa ra quyết định dựa trên dữ liệu chính xác, làm tăng hiệu suất và thu nhập nông nghiệp. </p>
                                         </blockquote>
                                         <div class="author-info mt-4">
-                                            <h6 class="mb-0">Rupan Oberoi</h6>
-                                            <span>Web Designer</span>
+                                            <h6 class="mb-0">Việt Hinh</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -454,7 +440,6 @@
                                         <img src="{{ asset('assets/img/testimonial/quotes-left') }}.svg"
                                             alt="testimonial quote" width="65" class="img-fluid mb-32">
                                         <div class="blockquote-title-review mb-4">
-                                            <h3 class="mb-0 h4 fw-semi-bold">Amazing Quiety template!</h3>
                                             <ul class="review-rate mb-0 list-unstyled list-inline">
                                                 <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
                                                 </li>
@@ -469,18 +454,12 @@
                                             </ul>
                                         </div>
                                         <blockquote class="blockquote">
-                                            <p>
-                                                Appropriately negotiate interactive niches rather orchestrate
-                                                scalable
-                                                benefits whereas flexible systems. Objectively grow quality
-                                                outsourcing
-                                                without vertical methods of empowerment. Assertively negotiate just
-                                                in time innovation after client-centered thinking.
+                                            <p class="h6">
+                                                NextFarm đã mang lại sự đổi mới đáng kể trong nông nghiệp của tôi. Hệ thống giám sát từ xa và các công nghệ tự động hóa giúp tôi theo dõi mọi hoạt động trên nông trại mà không cần phải ở gần. Điều này giúp tôi tiết kiệm công sức và giảm thiểu rủi ro trong quản lý nông nghiệp.
                                             </p>
                                         </blockquote>
                                         <div class="author-info mt-4">
-                                            <h6 class="mb-0">Jon Doe</h6>
-                                            <span>Software Engineer</span>
+                                            <h6 class="mb-0">Vũ Phi</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -488,115 +467,6 @@
                                     <div class="author-img-wrap pt-5 ps-5">
                                         <div class="testimonial-video-wrapper position-relative">
                                             <img src="{{ asset('assets/img/testimonial/t-3') }}.jpg"
-                                                class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
-                                            <div class="customer-info text-white d-flex align-items-center">
-                                                <a href="http://www.youtube.com/watch?v=hAP2QF--2Dg"
-                                                    class="video-icon popup-youtube text-decoration-none"><i
-                                                        class="fas fa-play"></i> <span class="text-white ms-2 small">
-                                                        Watch Video</span></a>
-                                            </div>
-                                            <div
-                                                class="position-absolute bg-primary-dark z--1 dot-mask dm-size-16 dm-wh-350 top--40 left--40 top-left">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="testimonial-tab-4" role="tabpanel">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="testimonial-tab-content mb-5 mb-lg-0 mb-md-0">
-                                        <img src="{{ asset('assets/img/testimonial/quotes-left') }}.svg"
-                                            alt="testimonial quote" width="65" class="img-fluid mb-32">
-                                        <div class="blockquote-title-review mb-4">
-                                            <h3 class="mb-0 h4 fw-semi-bold">Best Template for SAAS Company!</h3>
-                                            <ul class="review-rate mb-0 list-unstyled list-inline">
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <blockquote class="blockquote">
-                                            <p>Competently repurpose cost effective strategic theme areas and
-                                                customer
-                                                directed meta-services. Objectively orchestrate orthogonal
-                                                initiatives
-                                                after enterprise-wide bandwidth. Dynamically generate extensive
-                                                through cooperative channels time partnerships. </p>
-                                        </blockquote>
-                                        <div class="author-info mt-4">
-                                            <h6 class="mb-0">Hanry Luice</h6>
-                                            <span>App Developer</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 col-md-6">
-                                    <div class="author-img-wrap pt-5 ps-5">
-                                        <div class="testimonial-video-wrapper position-relative">
-                                            <img src="{{ asset('assets/img/testimonial/t-4') }}.jpg"
-                                                class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
-                                            <div class="customer-info text-white d-flex align-items-center">
-                                                <a href="http://www.youtube.com/watch?v=hAP2QF--2Dg"
-                                                    class="video-icon popup-youtube text-decoration-none"><i
-                                                        class="fas fa-play"></i> <span class="text-white ms-2 small">
-                                                        Watch Video</span></a>
-                                            </div>
-                                            <div
-                                                class="position-absolute bg-primary-dark z--1 dot-mask dm-size-16 dm-wh-350 top--40 left--40 top-left">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="testimonial-tab-5" role="tabpanel">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="testimonial-tab-content mb-5 mb-lg-0 mb-md-0">
-                                        <img src="{{ asset('assets/img/testimonial/quotes-left') }}.svg"
-                                            alt="testimonial quote" width="65" class="img-fluid mb-32">
-                                        <div class="blockquote-title-review mb-4">
-                                            <h3 class="mb-0 h4 fw-semi-bold">It is Undeniably Good!</h3>
-                                            <ul class="review-rate mb-0 list-unstyled list-inline">
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                                <li class="list-inline-item"><i class="fas fa-star text-warning"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <blockquote class="blockquote">
-                                            <p>Appropriately disintermediate one-to-one vortals through cross
-                                                functional
-                                                infomediaries. Collaboratively pursue multidisciplinary systems
-                                                through
-                                                stand-alone architectures. Progressively transition covalent
-                                                architectures whereas vertical applications procrastinate
-                                                professional.</p>
-                                        </blockquote>
-                                        <div class="author-info mt-4">
-                                            <h6 class="mb-0">Ami Nijai</h6>
-                                            <span>Customer Support</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 col-md-6">
-                                    <div class="author-img-wrap pt-5 ps-5">
-                                        <div class="testimonial-video-wrapper position-relative">
-                                            <img src="{{ asset('assets/img/testimonial/t-5') }}.jpg"
                                                 class="img-fluid rounded-custom shadow-lg" alt="testimonial author">
                                             <div class="customer-info text-white d-flex align-items-center">
                                                 <a href="http://www.youtube.com/watch?v=hAP2QF--2Dg"
@@ -658,34 +528,6 @@
                                 <div class="author-info">
                                     <h6 class="mb-0">Jon Doe</h6>
                                     <span>Software Engineer</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <div class="nav-link d-flex align-items-center rounded-custom border border-light border-2 testimonial-tab-link"
-                                data-bs-toggle="pill" data-bs-target="#testimonial-tab-4" role="tab"
-                                aria-selected="false">
-                                <div class="testimonial-thumb me-3">
-                                    <img src="{{ asset('assets/img/testimonial/4.jpg') }}" width="50"
-                                        class="rounded-circle" alt="testimonial thumb">
-                                </div>
-                                <div class="author-info">
-                                    <h6 class="mb-0">Hanry Luice</h6>
-                                    <span>App Developer</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <div class="nav-link d-flex align-items-center rounded-custom border border-light border-2 testimonial-tab-link"
-                                data-bs-toggle="pill" data-bs-target="#testimonial-tab-5" role="tab"
-                                aria-selected="true">
-                                <div class="testimonial-thumb me-3">
-                                    <img src="{{ asset('assets/img/testimonial/5.jpg') }}" width="50"
-                                        class="rounded-circle" alt="testimonial thumb">
-                                </div>
-                                <div class="author-info">
-                                    <h6 class="mb-0">Ami Nijai</h6>
-                                    <span>Customer Support</span>
                                 </div>
                             </div>
                         </li>

@@ -53,7 +53,7 @@
     <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/png" sizes="16x16">
 
     <!--title-->
-    <title>@yield('title')</title>
+    <title>Đăng nhập</title>
 
     <!--build:css-->
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">

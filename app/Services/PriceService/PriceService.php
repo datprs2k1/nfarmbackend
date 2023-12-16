@@ -26,7 +26,12 @@ class PriceService extends BaseService
         $entries = $this->mainRepository->get()
             ->load('product');
 
-        $entries = DataTables::of($entries)->addIndexColumn()->addColumn('actions', function ($item) {
+        $entries = DataTables::of($entries)->addIndexColumn()
+        ->addColumn('statusText', function($item) {
+            $html = $item->status == 1 ? "<h4><span class='badge bg-success'>$item->statusText</span></h4>" : "<h4><span class='badge bg-danger'>$item->statusText</span></h4>";
+            return $html;
+        })
+        ->addColumn('actions', function ($item) {
             return '<button type="button" rel="tooltip" class="btn btn-outline-primary rounded-pill btn-sm"
                 data-original-title="" title="" id="show" data-id="' . $item->id . '">
                 <i class="uil-info-circle font-20"></i>
@@ -40,7 +45,7 @@ class PriceService extends BaseService
                 data-original-title="" title="" id="delete" data-id="' . $item->id . '">
                 <i class="uil-trash font-20"></i>
             </button>';
-        })->rawColumns(['actions'])->make();
+        })->rawColumns(['actions', 'statusText'])->make();
 
         return $this->sendSuccessResponse($entries->original);
     }
@@ -54,8 +59,6 @@ class PriceService extends BaseService
             if (!$entry) {
                 throw new AppServiceException("Sản phẩm không tồn tại");
             }
-
-            $entry->image = $this->getImages($entry->image, PATH_IMAGE_PRODUCT, SOURCE_IMAGE_PRODUCT);
 
             return $this->sendSuccessResponse($entry);
         });

@@ -19,6 +19,7 @@ class OrderController extends Controller
 
     public function create(OrderStoreRequest $request)
     {
-        return $this->OrderService->create($request);
+        $data = $request->all();
+        return $this->OrderService->create($data);
     }
 }

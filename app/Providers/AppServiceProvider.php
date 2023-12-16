@@ -9,6 +9,7 @@ use App\Services\_Abstract\TransactionService;
 use App\Services\Auth\User\AuthService;
 use App\Services\Auth\AuthContract;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrapFive();
+        Paginator::useBootstrapFour();
     }
 }

@@ -21,7 +21,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($entries as $entry)
-                                            <tr>
+                                            <tr style="vertical-align: middle">
                                                 <td><a href="{{ route('order.show', ['id' => $entry->id]) }}"
                                                         class="text-body fw-bold">{{ $entry->id }}</a> </td>
                                                 <td>
@@ -29,10 +29,10 @@
                                                 </td>
                                                 <td>
                                                     @if ($entry->status == 0)
-                                                        <span class="badge text-bg-secondary">{{ $entry->statusText }}
-                                                        </span>
+                                                    <h6><span class='badge bg-danger'>{{ $entry->statusText }}</span></h6>
+
                                                     @else
-                                                        <span class="badge text-bg-success">{{ $entry->statusText }}
+                                                    <h6><span class='badge bg-success'>{{ $entry->statusText }}</span></h6>
                                                     @endif
                                                 </td>
                                                 <td>

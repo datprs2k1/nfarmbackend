@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-Giao dịch - NFarm
+Người dùng - NFarm
 @endsection
 
 @section('content')
@@ -35,12 +35,10 @@ Giao dịch - NFarm
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Mã giao dịch</th>
-                                <th>Tổng</th>
-                                <th>Mã hoá đơn</th>
-                                <th>Người dùng</th>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
                                 <th>Trạng thái</th>
-                                <th>Ngày tạo</th>
                             </tr>
                         </thead>
                     </table>
@@ -66,30 +64,25 @@ Giao dịch - NFarm
                 drawCallback: function() {
                     $('.table_paginate > .pagination').addClass('pagination-rounded');
                 },
-                ajax: '{!! route('api.admin.transaction.get') !!}',
+                ajax: '{!! route('api.admin.user.get') !!}',
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
                         className: 'text-center align-middle',
                     },
                     {
-                        data: 'code',
-                        name: 'code',
+                        data: 'name',
+                        name: 'name',
                         className: 'text-center align-middle'
                     },
                     {
-                        data: 'total',
-                        name: 'total',
+                        data: 'email',
+                        name: 'email',
                         className: 'text-center align-middle',
                     },
                     {
-                        data: 'order.id',
-                        name: 'order',
-                        className: 'text-center align-middle',
-                    },
-                    {
-                        data: 'user.name',
-                        name: 'user',
+                        data: 'phone',
+                        name: 'phone',
                         className: 'text-center align-middle',
                     },
                     {
@@ -97,11 +90,6 @@ Giao dịch - NFarm
                         name: 'statusText',
                         className: 'text-left align-middle',
                     },
-                    {
-                        data: 'created_at',
-                        name: 'created_at',
-                        className: 'text-center align-middle'
-                    }
                 ],
                 "paging": true,
                 "lengthChange": true,

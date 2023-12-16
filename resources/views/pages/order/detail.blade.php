@@ -78,11 +78,19 @@
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <tbody>
-                                    <th>Tổng :</th>
-                                    <th id="total">{{ number_format((float) $entry->total, 0, ',', '.') }} VNĐ</th>
+                                    <tr>
+                                        <td>Tổng :</td>
+                                        <td id="total">{{ number_format((float) $entry->total, 0, ',', '.') }} VNĐ</td>
                                     </tr>
-                                    <th>Trạng thái :</th>
-                                    <th id="total">{{ $entry->statusText }}</th>
+                                    <tr style="vertical-align: middle">
+                                        <td>Trạng thái :</td>
+                                        <td id="total">
+                                            @if ($entry->status == 1)
+                                                <h6><span class='badge bg-success'>{{ $entry->statusText }}</span></h6>
+                                            @else
+                                                <h6><span class='badge bg-danger'>{{ $entry->statusText }}</span></h6>
+                                            @endif
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

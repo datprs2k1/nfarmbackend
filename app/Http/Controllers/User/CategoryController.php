@@ -29,12 +29,12 @@ class CategoryController extends Controller
             abort(404);
         }
 
-        $category = $category->load('posts');
+        $posts = PostModel::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(9);
 
-        $category->posts->map(function ($entry) {
+        $posts->map(function ($entry) {
             $entry->image = $this->getImage($entry->image, PATH_IMAGE_POST, SOURCE_IMAGE_POST);
         });
 
-        return view('pages.category.detail', compact('category'));
+        return view('pages.category.detail', compact('category', 'posts'));
     }
 }

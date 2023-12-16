@@ -53,7 +53,7 @@
     <link rel="icon" href="{{ asset('assets/img/favicon.png') }}" type="image/png" sizes="16x16">
 
     <!--title-->
-    <title>@yield('title')</title>
+    <title>Đăng ký</title>
 
     <!--build:css-->
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
@@ -178,7 +178,23 @@
                         phone: phone
                     },
                     success: function() {
-                        window.location.href = '{{ route('home') }}';
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'bottom-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            showCloseButton: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal
+                                    .resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Đăng ký thành công';
+                        })
                     },
                     error: function(e) {
                         const Toast = Swal.mixin({

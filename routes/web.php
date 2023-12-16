@@ -1,5 +1,6 @@
 <?php
 
+use App\GPT\Actions\Suggest\SuggestGPTAction;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\CategoryController as UserCategoryController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\User\PriceController as UserPriceController;
 use App\Http\Controllers\User\ProductController as UserProductController;
 use App\Http\Controllers\User\UserController;
 use App\Models\PriceModel;
+use App\Models\UserModel;
 use Illuminate\Support\Facades\Route;
 use Litespeed\LSCache\LSCache;
 use Spatie\Sitemap\SitemapGenerator;
@@ -65,6 +68,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::group(['prefix' => 'transaction', 'as' => 'transaction.'], function () {
                 Route::get('', [TransactionController::class, 'index'])->name('index');
             });
+
+            Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+                Route::get('', [AdminUserController::class, 'index'])->name('index');
+            });
         });
     });
 });
@@ -84,6 +91,12 @@ Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('p
 Route::get('/price/{slug}', [UserPriceController::class, 'show'])->name('price.detail');
 Route::get('/category/{slug}', [UserCategoryController::class, 'show'])->name('category.detail');
 Route::get('/post/{slug}', [UserPostController::class, 'show'])->name('post.detail');
+Route::get('/about', function() {
+    return view('pages.about.index');
+})->name('about');
+Route::get('/customer', function() {
+    return view('pages.customer.index');
+})->name('customer');
 
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -126,16 +139,8 @@ Route::get('/createSitemap', function () {
 });
 
 Route::get('test', function () {
-    $prices = PriceModel::get([
-        "name",
-        "price",
-        "description",
-        "note",
-        "detail",
-        "warranty",
-        "product_id",
-        "status",
-    ]);
 
-    return response()->json($prices);
+    $a = new UserModel();
+
+    dd(SuggestGPTAction::make()->send("Tôi muốn sản phẩm châm phân"));
 });

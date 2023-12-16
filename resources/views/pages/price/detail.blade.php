@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')
+Bảng giá {{$prices->first()->first()->product->name}} - NFarm
+@endsection
+
 @section('content')
     <section class="page-header position-relative overflow-hidden ptb-120 bg-dark"
         style="background: url('{{ asset('assets/img/page-header-bg.svg') }}')no-repeat bottom left">

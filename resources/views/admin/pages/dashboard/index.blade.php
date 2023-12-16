@@ -1,5 +1,7 @@
 @extends('admin.layouts.layout')
-
+@section('title')
+Tổng quan - NFarm
+@endsection
 @section('content')
     <!-- start page title -->
     <div class="row">

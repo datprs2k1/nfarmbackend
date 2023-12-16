@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\Admin\PriceController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\ReportController;
 use App\Http\Controllers\Api\Admin\TransactionController;
+use App\Http\Controllers\Api\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +65,10 @@ Route::middleware('auth:admin')->as("api.admin.")->group( function () {
 
         Route::group(['prefix' => 'transaction', 'as' => 'transaction.'], function () {
             Route::get('', [TransactionController::class, 'get'])->name('get');
+        });
+
+        Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+            Route::get('', [UserController::class, 'get'])->name('get');
         });
 
         Route::group(['prefix' => 'report', 'as' => 'report.'], function () {

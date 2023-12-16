@@ -13,6 +13,7 @@ use App\Services\_Trait\SaveFileTrait;
 use App\Services\MailService\MailService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Yajra\DataTables\Facades\DataTables;
 
 class OrderService extends BaseService
@@ -36,24 +37,27 @@ class OrderService extends BaseService
             $entry->statusText = OrderStatusEnum::getDescription((int) $entry->status);
         });
 
-        $entries = DataTables::of($entries)->addIndexColumn()->addColumn('actions', function ($item) {
-            return '<button type="button" rel="tooltip" class="btn btn-outline-primary rounded-pill btn-sm"
+        $entries = DataTables::of($entries)->addIndexColumn()
+        ->addColumn('statusText', function($item) {
+            $html = $item->status == 1 ? "<h4><span class='badge bg-success'>$item->statusText</span></h4>" : "<h4><span class='badge bg-danger'>$item->statusText</span></h4>";
+            return $html;
+        })
+        ->addColumn('actions', function ($item) {
+            return '<a href="'.route('order.show', ['id' => $item->id]).'"><button type="button" rel="tooltip" class="btn btn-outline-primary rounded-pill btn-sm"
             data-original-title="" title="" id="show" data-id="' . $item->id . '">
             <i class="uil-info-circle font-20"></i>
             <div class="ripple-container"></div>
-        </button>';
-        })->rawColumns(['actions'])->make();
+        </button></a>';
+        })->rawColumns(['actions', 'statusText'])->make();
 
         return $this->sendSuccessResponse($entries->original);
     }
 
-    function create($request)
+    function create($data)
     {
-        return DbTransactions()->addCallbackJson(function () use ($request) {
+        return DbTransactions()->addCallbackJson(function () use ($data) {
 
-            $data = $request->all();
-
-            $cart = $this->cartRepository->with('price')->where('user_id', auth()->user()->id)->get();
+            $cart = $this->cartRepository->where('user_id', auth()->user()->id)->get()->load('price');
 
             $cart->each(function ($item) {
                 $item->total = $item->quantity * $item->price->price;

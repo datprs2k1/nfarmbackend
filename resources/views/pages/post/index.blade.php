@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    NFarm.Click
+    {{$post->name}} - NFarm
 @endsection
 
 @section('content')

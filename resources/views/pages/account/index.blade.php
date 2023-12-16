@@ -1,5 +1,7 @@
 @extends('layouts.layout')
-
+@section('title')
+Tài khoản - NFarm
+@endsection
 @section('content')
     <section class="masonary-blog-section ptb-60">
         <div class="container">

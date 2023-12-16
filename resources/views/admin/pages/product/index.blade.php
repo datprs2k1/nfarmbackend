@@ -1,5 +1,9 @@
 @extends('admin.layouts.layout')
 
+@section('title')
+Sản phẩm - NFarm
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">

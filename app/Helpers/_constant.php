@@ -43,12 +43,17 @@ const MENU = [
     ],
     [
         'name' => 'Đơn hàng',
-        'url' => 'admin.post.index',
+        'url' => 'admin.order.index',
         'icon' => 'uil-rss-alt',
     ],
     [
         'name' => 'Giao dịch',
-        'url' => 'admin.post.index',
+        'url' => 'admin.transaction.index',
+        'icon' => 'uil-rss-alt',
+    ],
+    [
+        'name' => 'Người dùng',
+        'url' => 'admin.user.index',
         'icon' => 'uil-rss-alt',
     ],
 ];

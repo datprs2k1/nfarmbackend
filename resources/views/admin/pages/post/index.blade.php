@@ -1,5 +1,9 @@
 @extends('admin.layouts.layout')
 
+@section('title')
+Bài viết - NFarm
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -248,8 +252,8 @@
                         className: 'text-center align-middle',
                     },
                     {
-                        data: 'status_text',
-                        name: 'status_text',
+                        data: 'statusText',
+                        name: 'statusText',
                         className: 'text-center align-middle'
                     },
                     {

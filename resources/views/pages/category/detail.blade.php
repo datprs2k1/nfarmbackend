@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-    NFarm.Click
+{{$category->name}} - NFarm
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
 <section class="masonary-blog-section ptb-80">
     <div class="container">
         <div class="row">
-            @foreach ($category->posts as $post)
+            @foreach ($posts as $post)
             <div class="col-lg-4 col-md-6">
                 <div class="single-article rounded-custom my-3">
                     <a href="{{route('post.detail', ['slug' => $post->slug])}}" class="article-img">
@@ -39,7 +39,9 @@
         </div>
 
         <!--pagination start-->
-        <div class="row justify-content-center align-items-center mt-5">
+        {{ $posts->links() }}
+
+        {{-- <div class="row justify-content-center align-items-center mt-5">
             <div class="col-auto my-1">
                 <a href="#" class="btn btn-soft-primary btn-sm">Previous</a>
             </div>
@@ -58,7 +60,7 @@
             <div class="col-auto my-1">
                 <a href="#" class="btn btn-soft-primary btn-sm">Next</a>
             </div>
-        </div>
+        </div> --}}
         <!--pagination end-->
     </div>
 </section>

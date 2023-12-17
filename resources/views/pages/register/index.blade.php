@@ -193,8 +193,10 @@
                         })
                         Toast.fire({
                             icon: 'success',
-                            title: 'Đăng ký thành công';
+                            title: 'Đăng ký thành công'
                         })
+
+                        window.location.href = '{{ route('login') }}'
                     },
                     error: function(e) {
                         const Toast = Swal.mixin({

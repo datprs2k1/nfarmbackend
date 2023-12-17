@@ -161,7 +161,7 @@
                             style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
                             <h1
                                 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">
-                                Đặt lại mật khẩu</h1>
+                                Thanh toán thành công</h1>
                         </td>
                     </tr>
                 </table>

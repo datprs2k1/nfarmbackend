@@ -25,11 +25,6 @@ Người dùng - NFarm
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary" id="add">
-                                <i class=" uil-plus font-16"></i>
-                            </button>
-                        </div>
                     </div>
                     <table id="table" class="table table-striped dt-responsive nowrap w-100">
                         <thead>

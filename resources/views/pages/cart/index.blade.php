@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')
+Giỏ hàng - NFarm
+@endsection
+
 @section('content')
     <div class="ptb-60">
         <div class="container">

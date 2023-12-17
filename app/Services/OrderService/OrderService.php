@@ -31,7 +31,7 @@ class OrderService extends BaseService
 
     function get()
     {
-        $entries = $this->mainRepository->get();
+        $entries = $this->mainRepository->orderBy('created_at', 'desc')->get();
 
         $entries->each(function($entry) {
             $entry->statusText = OrderStatusEnum::getDescription((int) $entry->status);

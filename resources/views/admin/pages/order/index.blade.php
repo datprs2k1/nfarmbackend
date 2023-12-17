@@ -25,11 +25,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row mb-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-primary" id="add">
-                                <i class=" uil-plus font-16"></i>
-                            </button>
-                        </div>
                     </div>
                     <table id="table" class="table table-striped dt-responsive nowrap w-100">
                         <thead>
@@ -38,6 +33,7 @@
                                 <th>Mã đơn hàng</th>
                                 <th>Tổng</th>
                                 <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -83,6 +79,11 @@
                     {
                         data: 'statusText',
                         name: 'statusText',
+                        className: 'text-left align-middle',
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
                         className: 'text-left align-middle',
                     },
                     {

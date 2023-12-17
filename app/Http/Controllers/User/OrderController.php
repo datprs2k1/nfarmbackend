@@ -11,6 +11,7 @@ use App\Models\TransactionModel;
 use App\Services\CategoryService\CategoryService;
 use App\Services\MailService\MailService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -128,14 +129,16 @@ class OrderController extends Controller
 
     public function completePayment(Request $request)
     {
+        Log::info($request->all());
         $id = explode('_', $request->get('vnp_TxnRef'))[1];
-        $status = $request->get('vnp_ResponseCode');
+        $status = $request->get('vnp_TransactionStatus');
         $code = $request->get('vnp_TransactionNo');
         $total = $request->get('vnp_Amount');
         $message = $request->get('vnp_OrderInfo');
-        $status = 0;
 
         $entry = OrderModel::where('id', $id)->first();
+
+        $s = 0;
 
         if ($status == '00') {
             $entry->update([
@@ -143,16 +146,17 @@ class OrderController extends Controller
             ]);
 
             $this->mailService->sendPayment(auth()->user()->email, $entry);
-            $status = 1;
+            $s = 1;
         }
 
         $transaction = $entry->transactions()->create([
             'code' => $code,
             'total' => $total,
             'message' => $message,
-            'status' => $status,
+            'status' => $s,
             'user_id' => $entry->user->id
         ]);
+
 
         return redirect()->route('order.show', ['id' => $id]);
     }

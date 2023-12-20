@@ -1,6 +1,7 @@
 <?php
 
 use App\GPT\Actions\Suggest\SuggestGPTAction;
+use App\GPT\Chats\CustomerSupport\CustomerSupportGPTChat;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -91,10 +92,10 @@ Route::get('/product/{slug}', [UserProductController::class, 'detail'])->name('p
 Route::get('/price/{slug}', [UserPriceController::class, 'show'])->name('price.detail');
 Route::get('/category/{slug}', [UserCategoryController::class, 'show'])->name('category.detail');
 Route::get('/post/{slug}', [UserPostController::class, 'show'])->name('post.detail');
-Route::get('/about', function() {
+Route::get('/about', function () {
     return view('pages.about.index');
 })->name('about');
-Route::get('/customer', function() {
+Route::get('/customer', function () {
     return view('pages.customer.index');
 })->name('customer');
 
@@ -140,7 +141,9 @@ Route::get('/createSitemap', function () {
 
 Route::get('test', function () {
 
-    $a = new UserModel();
+    $chat = CustomerSupportGPTChat::make();
+    $chat->addMessage(request()->get('question'));
+    $chat->send();
 
-    dd(SuggestGPTAction::make()->send("Tôi muốn sản phẩm châm phân"));
+    echo $chat->latestMessage()->content;
 });

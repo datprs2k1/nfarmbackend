@@ -5,6 +5,7 @@ namespace App\GPT\Functions;
 use App\Models\ProductModel;
 use MalteKuhr\LaravelGPT\GPTFunction;
 use Closure;
+use Illuminate\Support\Facades\Log;
 
 class KnowledgeProductGPTFunction extends GPTFunction
 {
@@ -24,14 +25,25 @@ class KnowledgeProductGPTFunction extends GPTFunction
     public function function(): Closure
     {
         return function (string $query) {
-            $products = ProductModel::search($query)->take(3)->get();
+            $products = ProductModel::search($query)->take(2)->get()->load('prices');
 
-            return [
+            $a = [
                 'results' => $products->map(fn ($product) => [
+                    'id' => $product->id,
                     'name' => $product->name,
-                    'description' => $product->description
+                    'description' => $product->description,
+                    'future' => strip_tags($product->future),
+                    'detail' => strip_tags($product->detail),
+                    'prices' => $product->prices->map(fn ($price) => [
+                        'price' => $price->price,
+                        'name' => $price->name,
+                    ])
                 ])
             ];
+
+            Log::info($a);
+
+            return $a;
         };
     }
 
@@ -57,6 +69,6 @@ class KnowledgeProductGPTFunction extends GPTFunction
      */
     public function description(): string
     {
-        return 'Search the knowledge base for the given query. Returns the three most relevant products.';
+        return 'Đưa ra câu trả lời đúng nhất';
     }
 }

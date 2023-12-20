@@ -150,6 +150,7 @@
     <script src="{{ asset('assets/js/vendors/massonry.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
     <script>
         async function getCart() {
             var html = '';

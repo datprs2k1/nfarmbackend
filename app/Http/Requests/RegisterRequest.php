@@ -18,7 +18,7 @@ class RegisterRequest extends ApiBaseRequest
         return [
             'email' => 'required|max:255|email|unique:users',
             'name' => 'required|max:255',
-            'phone' => 'required|max:15|unique:users',
+            'phone' => 'required|digits:10|unique:users',
             'password' => 'required|max:255|min:6',
         ];
     }
@@ -40,6 +40,7 @@ class RegisterRequest extends ApiBaseRequest
             'min' => ':attribute phải có ít nhất :min ký tự',
             'email' => ':attribute phải là dạng email',
             'unique' => ':attribute đã tồn tại',
+            'digits' => ':attribute phải có :digits số',
         ];
     }
 }

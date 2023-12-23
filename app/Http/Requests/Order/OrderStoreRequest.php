@@ -25,7 +25,7 @@ class OrderStoreRequest extends ApiBaseRequest
             'phone' => [
                 'required',
                 'string',
-                'max:15'
+                'digits:10'
             ],
             'address' => [
                 'required',
@@ -71,6 +71,7 @@ class OrderStoreRequest extends ApiBaseRequest
             'string' => ':attribute phải là kiểu ký tự',
             'min' => ':attribute phải có ít nhất :min ký tự',
             'email' => ':attribute phải là dạng email',
+            'digits' => ':attribute phải có :digits số',
         ];
     }
 }

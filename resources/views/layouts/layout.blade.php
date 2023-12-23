@@ -196,6 +196,8 @@
     </script>
     @stack('js')
     <!--endbuild-->
+    {{ \TawkTo::widgetCode() }}
+
 </body>
 
 

@@ -25,7 +25,7 @@ class KnowledgeProductGPTFunction extends GPTFunction
     public function function(): Closure
     {
         return function (string $query) {
-            $products = ProductModel::search($query)->take(2)->get()->load('prices');
+            $products = ProductModel::search($query)->take(1)->get()->load('prices');
 
             $a = [
                 'results' => $products->map(fn ($product) => [
@@ -37,11 +37,13 @@ class KnowledgeProductGPTFunction extends GPTFunction
                     'prices' => $product->prices->map(fn ($price) => [
                         'price' => $price->price,
                         'name' => $price->name,
+                        'description' => $price->description,
+                        'note' => $price->note,
+                        'detail' => strip_tags($price->detail),
+                        'warranty' => $price->warranty,
                     ])
                 ])
             ];
-
-            Log::info($a);
 
             return $a;
         };

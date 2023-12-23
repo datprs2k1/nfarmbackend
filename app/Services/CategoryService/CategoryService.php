@@ -89,10 +89,14 @@ class CategoryService extends BaseService
     {
         return DbTransactions()->addCallbackJson(function () use ($entryId) {
 
-            $entry = $this->mainRepository->findById($entryId);
+            $entry = $this->mainRepository->findById($entryId)->load(['products', 'posts']);
 
             if (! $entry) {
                 throw new AppServiceException('Danh mục không tồn tại');
+            }
+
+            if($entry->products->count() > 0 || $entry->posts->count() > 0) {
+                throw new AppServiceException('Danh mục đang được dùng.');
             }
 
             $entry->delete();

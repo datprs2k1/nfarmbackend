@@ -1,7 +1,7 @@
 @extends('admin.layouts.layout')
 
 @section('title')
-Danh mục - NFarm
+    Danh mục - NFarm
 @endsection
 
 @section('content')
@@ -338,8 +338,26 @@ Danh mục - NFarm
 
                                 $('#table').DataTable().ajax.reload();
                             },
-                            error: function(error) {
-                                console.log(error)
+                            error: function(e) {
+                                const Toast = Swal.mixin({
+                                    toast: true,
+                                    position: 'bottom-end',
+                                    showConfirmButton: false,
+                                    timer: 3000,
+                                    timerProgressBar: true,
+                                    showCloseButton: true,
+                                    didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter',
+                                            Swal.stopTimer)
+                                        toast.addEventListener('mouseleave',
+                                            Swal
+                                            .resumeTimer)
+                                    }
+                                })
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: e.responseJSON.error_msg
+                                })
                             }
                         });
                     }

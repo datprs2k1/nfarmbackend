@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-Bảng giá {{$prices->first()->first()->product->name}} - NFarm
+    Bảng giá {{ $prices->first()->first()->product->name }} - NFarm
 @endsection
 
 @section('content')
@@ -44,9 +44,11 @@ Bảng giá {{$prices->first()->first()->product->name}} - NFarm
                                             </li>
                                         @endforeach
                                     </ul>
-                                    <div class="alert alert-primary text-uppercase text-center" role="alert">
-                                        Bảo hành {{ $item->warranty }} năm
-                                    </div>
+                                    @if ($item->warranty > 0)
+                                        <div class="alert alert-primary text-uppercase text-center" role="alert">
+                                            Bảo hành {{ $item->warranty }} năm
+                                        </div>
+                                    @endif
 
                                 </div>
                                 <div class="d-flex justify-content-center">

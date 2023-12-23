@@ -115,10 +115,14 @@ class ProductService extends BaseService
     {
         return DbTransactions()->addCallbackJson(function () use ($entryId) {
 
-            $entry = $this->mainRepository->findById($entryId);
+            $entry = $this->mainRepository->findById($entryId)->load(['prices']);
 
             if (!$entry) {
                 throw new AppServiceException("Sản phẩm không tồn tại");
+            }
+
+            if($entry->prices->count() > 0) {
+                throw new AppServiceException('Sản phẩm đang được dùng');
             }
 
             $entry->delete();

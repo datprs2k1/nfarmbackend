@@ -2,6 +2,8 @@
 
 namespace App\Services\ProductService;
 
+use App\Enums\Price\PriceStatusEnum;
+use App\Enums\Product\ProductStatusEnum;
 use App\Http\Requests\_Abstract\ApiBaseRequest;
 use App\Models\ProductModel;
 use App\Repositories\Product\IProductRepository;
@@ -187,7 +189,7 @@ class ProductService extends BaseService
             abort(404);
         }
 
-        $prices = $entry->prices;
+        $prices = $entry->prices->where('status', PriceStatusEnum::ACTIVE);
 
         $prices->each(function ($price) {
             $price->detail = $this->getPriceDetail($price->detail);

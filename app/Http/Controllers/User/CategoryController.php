@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Enums\Post\PostStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\CategoryModel;
 use App\Models\PostModel;
@@ -29,7 +30,7 @@ class CategoryController extends Controller
             abort(404);
         }
 
-        $posts = PostModel::where('category_id', $category->id)->orderBy('created_at', 'desc')->paginate(9);
+        $posts = PostModel::where('category_id', $category->id)->where('status', PostStatusEnum::ACTIVE)->orderBy('created_at', 'desc')->paginate(9);
 
         $posts->map(function ($entry) {
             $entry->image = $this->getImage($entry->image, PATH_IMAGE_POST, SOURCE_IMAGE_POST);

@@ -102,7 +102,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            @if ($entry->status == 1)
+                            @if ($entry->status == 0)
                                 <div class="mt-4 d-flex justify-content-center">
                                     <a href="{{ route('order.payment', ['id' => $entry->id]) }}" class="btn btn-danger btn-sm"
                                         id="order">

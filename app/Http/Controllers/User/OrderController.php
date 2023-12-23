@@ -150,7 +150,7 @@ class OrderController extends Controller
         }
 
         $transaction = $entry->transactions()->create([
-            'code' => $code,
+            'code' => $s == 1 ? $code : fake()->numerify('######'),
             'total' => $total,
             'message' => $message,
             'status' => $s,

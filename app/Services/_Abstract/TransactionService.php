@@ -35,7 +35,7 @@ class TransactionService extends BaseService
             DB::beginTransaction();
             $result = $callback();
             DB::commit();
-            return $this->sendSuccessResponse($result);
+            return $result;
         }catch (AppServiceException|Exception $exception) {
             DB::rollBack();
             Log::info($exception->getMessage());

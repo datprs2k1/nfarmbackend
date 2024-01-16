@@ -5,10 +5,12 @@ namespace App\Transformers;
 use App\Enums\User\UserStatusEnum;
 use App\Enums\User\VerifyEnum;
 use App\Models\UserModel;
+use App\Services\_Trait\SaveFile;
 use League\Fractal\TransformerAbstract;
 
 class UserTransformer extends TransformerAbstract
 {
+    use SaveFile;
     /**
      * List of resources to automatically include
      *
@@ -24,7 +26,7 @@ class UserTransformer extends TransformerAbstract
      * @var array
      */
     protected array $availableIncludes = [
-        //
+        'info'
     ];
 
     /**
@@ -36,7 +38,7 @@ class UserTransformer extends TransformerAbstract
     {
         return [
             'id' => $entry->id,
-            'avatar' => $entry->avatar,
+            'avatar' => $entry->avatar ? $this->getFile($entry->avatar, PATH_AVATAR) : null,
             'name'=> $entry->name,
             'email'=> $entry->email,
             'phone'=> $entry->phone,
@@ -46,5 +48,10 @@ class UserTransformer extends TransformerAbstract
             'status' => $entry->status,
             'status_text' => UserStatusEnum::getDescription((int) $entry->status),
         ];
+    }
+
+    public function includeInfo(UserModel $entry)
+    {
+        return $this->item($entry->info, new UserInfoTransformer) ?? $this->null();
     }
 }

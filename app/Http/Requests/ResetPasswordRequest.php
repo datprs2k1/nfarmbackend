@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests;
 
 use App\Http\Requests\_Abstract\ApiBaseRequest;
 
@@ -14,9 +14,8 @@ class ResetPasswordRequest extends ApiBaseRequest
     public function rules()
     {
         return [
-            'token' => 'string|required',
-            'email' => 'required|email',
-            'password' => 'required|min:6'
+            'code' => 'string|required',
+            'password' => 'required|min:6|confirmed',
         ];
     }
 }

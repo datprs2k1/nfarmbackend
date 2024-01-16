@@ -8,4 +8,5 @@ interface AuthContract
     public function register(array $registerData);
     public function submitForgetPasswordForm(array $resetData);
     public function resetPassword(array $input);
+    public function changePassword(array $input);
 }

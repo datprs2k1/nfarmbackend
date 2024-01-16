@@ -13,3 +13,9 @@ const ROLE_ADMIN = "admin";
 const ROLE_CUSTOMER = "customer";
 
 const DEFAULT_PAGINATE = 10;
+
+const SOURCE_AVATAR = "public/avatars";
+const PATH_AVATAR = "avatars";
+
+const SOURCE_IDENTITY = "public/identities";
+const PATH_IDENTITY = "identities";

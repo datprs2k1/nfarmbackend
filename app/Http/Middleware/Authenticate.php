@@ -2,20 +2,24 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Closure;
+use Illuminate\Support\Facades\Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-class Authenticate extends Middleware
+class Authenticate extends BaseMiddleware
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
-    protected function redirectTo($request)
+    public function handle($request, Closure $next)
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        try {
+            $user = JWTAuth::parseToken()->authenticate();
+            app()->bind("user", function () use ($user){
+                return $user;
+            });
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Unauthorized', "error_msg" => "Unauthorized"], 401);
         }
+
+        return $next($request);
     }
 }

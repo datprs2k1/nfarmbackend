@@ -20,6 +20,7 @@ trait BaseAuth
     protected string $registerRequest;
     protected string $forgotPasswordRequest;
     protected string $resetPasswordRequest;
+    protected string $changePasswordRequest;
     public function login()
     {
         $request = resolve($this->loginRequest);
@@ -59,32 +60,20 @@ trait BaseAuth
     public function forgotPassword()
     {
         $request = resolve($this->forgotPasswordRequest);
-        try {
-            $resetPassData = $this->authService->submitForgetPasswordForm($request->fillData());
-        } catch (\Exception $e) {
-            return response([
-                'status' => 'error',
-                'error_msg' => $e->getMessage()
-            ], 400);
-        }
-        return response([
-            'data' => $resetPassData
-        ]);
+        $resetPassData = $this->authService->submitForgetPasswordForm($request->fillData());
+
+        return $resetPassData;
     }
 
     public function resetPassword()
     {
         $input = resolve($this->resetPasswordRequest);
-        try {
-            return $this->authService->resetPassword($input);
-        } catch (\Exception $e) {
-            return response([
-                'status' => 'error',
-                'error_msg' => $e->getMessage()
-            ], 400);
-        }
-        return response([
-            'status' => 'error'
-        ], 400);
+        return $this->authService->resetPassword($input);
+    }
+
+    public function changePassword()
+    {
+        $input = resolve($this->changePasswordRequest);
+        return $this->authService->changePassword($input);
     }
 }

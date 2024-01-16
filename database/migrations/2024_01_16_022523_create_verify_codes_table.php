@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->tinyInteger('type');
-            $table->boolean('status');
+            $table->boolean('status')->default(false);
             $table->unsignedBigInteger('user_id')->constrained();
             $table->timestamps();
         });

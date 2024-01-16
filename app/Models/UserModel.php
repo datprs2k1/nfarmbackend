@@ -86,4 +86,8 @@ class UserModel extends Authenticatable implements JWTSubject
     public function info() {
         return $this->hasOne(UserInfo::class, 'user_id', 'id');
     }
+
+    public function verifyCodes() {
+        return $this->hasMany(VerifyCode::class, 'user_id', 'id');
+    }
 }

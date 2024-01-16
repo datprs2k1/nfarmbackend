@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\_Abstract\ApiBaseRequest;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends ApiBaseRequest
 {
@@ -18,8 +18,16 @@ class LoginRequest extends ApiBaseRequest
     {
         return [
             //
-            'email' => 'required|max:255|required|email',
-            'password' => 'required|string|max:50|min:6'
+            'email' => [
+                'nullable',
+                'max:255',
+],
+            'password' => [
+                'required',
+                'string',
+                'max:50',
+                'min:6'
+            ]
         ];
     }
 }

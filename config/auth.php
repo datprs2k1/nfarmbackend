@@ -38,7 +38,7 @@ return [
     'guards' => [
         'admin' => [
             'driver' => 'jwt',
-            'provider' => 'users',
+            'provider' => 'admin',
         ],
     ],
 
@@ -60,15 +60,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
+            'model' => App\Models\UserModel::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

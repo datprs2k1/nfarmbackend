@@ -9,3 +9,7 @@ const HTTP_NOT_FOUND = 404;
 const HTTP_FORBIDDEN = 403;
 const HTTP_UNAUTHORIZED_CODE = 401;
 const GUARD_ADMIN_API = "admin";
+const ROLE_ADMIN = "admin";
+const ROLE_CUSTOMER = "customer";
+
+const DEFAULT_PAGINATE = 10;
